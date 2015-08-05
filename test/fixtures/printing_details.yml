@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  front_print_id: 1
+  back_print_id: 1
+  left_print_id: 1
+  right_print_id: 1
+  special: 1
+
+two:
+  front_print_id: 1
+  back_print_id: 1
+  left_print_id: 1
+  right_print_id: 1
+  special: 1
