@@ -7,12 +7,11 @@ class CreateQuotations < ActiveRecord::Migration
       t.integer :delivered
       t.datetime :deadline
       t.integer :ac_id
-      t.integer :client_id
+      t.integer :customer_id
       t.integer :design_id
       t.integer :shirt_id
       t.integer :printing_id
       t.integer :approval_id
-      t.integer :additional_id
       t.integer :additional_id
       t.integer :costing_id
       t.integer :negotiation_id

@@ -5,14 +5,13 @@ one:
   rush_fee: 1
   delivery_fee: 1
   delivered: 1
-  deadline: 2015-08-05 14:13:16
+  deadline: 2015-08-05 15:21:36
   ac_id: 1
-  client_id: 1
+  customer_id: 1
   design_id: 1
   shirt_id: 1
   printing_id: 1
   approval_id: 1
-  additional_id: 1
   additional_id: 1
   costing_id: 1
   negotiation_id: 1
@@ -22,14 +21,13 @@ two:
   rush_fee: 1
   delivery_fee: 1
   delivered: 1
-  deadline: 2015-08-05 14:13:16
+  deadline: 2015-08-05 15:21:36
   ac_id: 1
-  client_id: 1
+  customer_id: 1
   design_id: 1
   shirt_id: 1
   printing_id: 1
   approval_id: 1
-  additional_id: 1
   additional_id: 1
   costing_id: 1
   negotiation_id: 1
