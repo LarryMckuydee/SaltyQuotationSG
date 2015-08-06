@@ -1,3 +1,3 @@
 class Costing < ActiveRecord::Base
-  belongs_to :quotation
+  has_one :quotation
 end

@@ -1,3 +1,4 @@
 class Brand < ActiveRecord::Base
-  belongs_to :shirt
+  has_one :shirt
+  has_and_belongs_to_many :fit
 end

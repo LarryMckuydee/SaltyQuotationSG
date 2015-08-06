@@ -1,3 +1,3 @@
 class PrintMethod < ActiveRecord::Base
-  belongs_to :print
+  has_one :print
 end

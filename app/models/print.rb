@@ -1,5 +1,5 @@
 class Print < ActiveRecord::Base
-  belongs_to :printing_detail
-  has_one :print_method
-  has_one :size
+  has_one :printing_detail
+  belongs_to :print_method
+  belongs_to :block_size
 end

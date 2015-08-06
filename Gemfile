@@ -5,6 +5,18 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
+# Active Admin admin panel gem
+gem 'activeadmin', '~> 1.0.0.pre1'
+
+#devise Authentication
+gem 'devise'
+
+#install bootstrap
+gem 'bootstrap-sass','~> 3.3.5'
+
+#money rails that help u handle money to integer
+gem 'money-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -42,4 +54,3 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

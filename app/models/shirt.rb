@@ -1,6 +1,6 @@
 class Shirt < ActiveRecord::Base
-  belongs_to :quotation
-  has_one :brand
-  has_one :fit
-  has_one :type
+  has_one :quotation
+  belongs_to :brand
+  belongs_to :fit
+  belongs_to :shirt_type, foreign_key: "type_id"
 end

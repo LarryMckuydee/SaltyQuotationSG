@@ -1,3 +1,3 @@
 class Customer < ActiveRecord::Base
-  belongs_to :quotation
+  has_one :quotation
 end

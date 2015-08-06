@@ -1,10 +1,10 @@
 class Quotation < ActiveRecord::Base
-  has_one :customer
-  has_one :design
-  has_one :shirt
-  has_one :printing_detail
-  has_one :apparel_consultant
-  has_one :costing
-  has_one :negotiation
+  belongs_to :customer
+  belongs_to :design
+  belongs_to :shirt
+  belongs_to :printing_detail, foreign_key: "printing_id"
+  belongs_to :apparel_consultant,foreign_key: "ac_id"
+  belongs_to :costing
+  belongs_to :negotiation
   has_many :additional_info
 end

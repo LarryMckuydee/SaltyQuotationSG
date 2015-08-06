@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'quotation/index'
+  get 'quotation/create'
+  #get 'home/index'
+  root 'home#index'
+
+  devise_for :apparel_consultants
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
