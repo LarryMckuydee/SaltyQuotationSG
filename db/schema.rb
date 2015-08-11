@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806041608) do
+ActiveRecord::Schema.define(version: 20150811041503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,9 @@ ActiveRecord::Schema.define(version: 20150806041608) do
     t.text     "description"
     t.integer  "price"
     t.integer  "approval_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "quotation_id"
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -76,8 +77,26 @@ ActiveRecord::Schema.define(version: 20150806041608) do
   add_index "apparel_consultants", ["email"], name: "index_apparel_consultants_on_email", unique: true, using: :btree
   add_index "apparel_consultants", ["reset_password_token"], name: "index_apparel_consultants_on_reset_password_token", unique: true, using: :btree
 
+  create_table "block_nos", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "block_sizes", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "block_sizes_print_methods", id: false, force: :cascade do |t|
+    t.integer "print_method_id", null: false
+    t.integer "block_size_id",   null: false
+  end
+
+  create_table "brand_categorizations", force: :cascade do |t|
+    t.integer  "brand_id"
+    t.integer  "fit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -86,6 +105,16 @@ ActiveRecord::Schema.define(version: 20150806041608) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "brands_fits", id: false, force: :cascade do |t|
+    t.integer "brand_id", null: false
+    t.integer "fit_id",   null: false
+  end
+
+  create_table "brands_shirt_types", id: false, force: :cascade do |t|
+    t.integer "brand_id",      null: false
+    t.integer "shirt_type_id", null: false
   end
 
   create_table "costings", force: :cascade do |t|
@@ -160,15 +189,30 @@ ActiveRecord::Schema.define(version: 20150806041608) do
     t.datetime "deadline"
     t.integer  "ac_id"
     t.integer  "customer_id"
-    t.integer  "design_id"
-    t.integer  "shirt_id"
-    t.integer  "printing_id"
     t.integer  "approval_id"
-    t.integer  "additional_id"
-    t.integer  "costing_id"
     t.integer  "negotiation_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "shirt_type_id"
+    t.integer  "brand_id"
+    t.integer  "fit_id"
+    t.integer  "front_print_method_id"
+    t.integer  "front_block_size_id"
+    t.integer  "back_print_method_id"
+    t.integer  "back_block_size_id"
+    t.integer  "left_print_method_id"
+    t.integer  "right_print_method_id"
+    t.integer  "special_print"
+    t.integer  "price"
+    t.integer  "cost"
+    t.integer  "front_block_no"
+    t.integer  "back_block_no"
+    t.integer  "left_block_no"
+    t.integer  "right_block_no"
+    t.integer  "quantity"
+    t.string   "design_file_name"
+    t.integer  "final_price"
+    t.integer  "total_cost"
   end
 
   create_table "shirt_types", force: :cascade do |t|

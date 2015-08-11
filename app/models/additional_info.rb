@@ -1,3 +1,3 @@
 class AdditionalInfo < ActiveRecord::Base
-  has_one :quotation
+  belongs_to :quotation
 end

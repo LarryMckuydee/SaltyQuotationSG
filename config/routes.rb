@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
-  get 'quotation/index'
-  get 'quotation/create'
+  # get 'print_methods/index'
+
+  # get 'customers/index'
+
+  get 'fits/show'
+
+  # get 'brands/index'
+
+  resources :quotations
+  resources :brands
+  resources :customers
+  resources :print_methods
+
   #get 'home/index'
   root 'home#index'
 

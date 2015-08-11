@@ -1,0 +1,112 @@
+<%= javascript_include_tag :defaults, "nested_form" %>
+
+<%= nested_form_for @quotation do |f| %>
+
+  <%= f.fields_for :customers do |customer_fields| %>
+    <%= customer_fields.label :full_name,"Client's Name" %>
+    <!-- <%= customer_fields.text_field :full_name,data: {clsource: customers_path} %><br/> -->
+    <%= customer_fields.label :contact,"Client's Contact Number" %>
+    <%= customer_fields.text_field :contact%>
+    <%= customer_fields.label :address_line1,"Client's Address Line 1" %>
+    <%= customer_fields.text_field :address_line1 %>
+    <%= customer_fields.label :address_line2,"Client's Address Line 2" %>
+    <%= customer_fields.text_field :address_line2 %>
+    <%= customer_fields.label :address_line3,"Client's Address Line 3" %>
+    <%= customer_fields.text_field :address_line3 %>
+    <%= customer_fields.label :city,"Client's City" %>
+    <%= customer_fields.text_field :city %>
+    <%= customer_fields.label :postal,"Client's Postal" %>
+    <%= customer_fields.text_field :postal %>
+    <%= customer_fields.label :state,"Client's State" %>
+    <%= customer_fields.text_field :state %>
+    <%= customer_fields.label :country,"Client's Country" %>
+    <!-- <%= customer_fields.text_field :country %> -->
+    <%= customer_fields.country_select("country") %>
+  <% end %>
+
+  <%= f.label :design_file_name,"Design File Name" %>
+  <%= f.text_field :design_file_name %>
+
+  <%= f.label :budget,"Client's Budget" %>
+  <%= f.text_field :budget %>
+
+  <%= f.label :budget,"Client's Deadline" %>
+  <%= f.datetime_select :deadline %>
+
+  <%= f.label :rush_fee,"Rush Order Fee" %>
+  <%= f.text_field :rush_fee %>
+
+  <%= f.label :delivered, "Delivery" %>
+  <%= f.select(:delivered,[["Yes",1],["No",0]]) %>
+
+  <%= f.label :delivery_fee, "Delivery Fee" %>
+  <%= f.text_field :delivery_fee %>
+
+  <%= f.label :quantity, "Quantity" %>
+  <%= f.text_field :quantity %>
+
+  <%= f.label :brand_id,"Brand:" %>
+    <%= f.collection_select(:brand_id,Brand.order(:name),:id,:name,{prompt:"Select A Brand"}) %> <br/>
+
+
+  <%=f.label :fit_id,"Fit:"%>
+    <%= f.collection_select(:fit_id,Fit.order(:name),:id,:name,{:prompt => "Select A Fit"}) %><br/>
+
+
+  <%=f.label :shirt_type_id,"Shirt Type:" %>
+    <%= f.collection_select(:shirt_type_id,ShirtType.order(:name),:id,:name,{:prompt => "Select A Type"}) %><br/>
+
+  Front Print <br/>
+  <%= f.label :front_print_method_id,"Print Method" %>
+  <%= f.collection_select(:front_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"}) %><br/>
+  <%= f.label :front_block_size_id,"Block Size" %>
+  <%= f.collection_select(:front_block_size_id,BlockSize.order(:name),:id,:name,{:prompt => "Select A Block Size"}) %><br/>
+  <%= f.label :front_block_no,"No. of Blocks" %>
+  <%= f.text_field :front_block_no %>
+  Back Print <br/>
+  <%= f.label :back_print_method_id,"Print Method" %>
+  <%= f.collection_select(:back_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"}) %><br/>
+  <%= f.label :back_block_size_id,"Block Size" %>
+  <%= f.collection_select(:back_block_size_id,BlockSize.order(:name),:id,:name,{:prompt => "Select A Block Size"}) %><br/>
+  <%= f.label :back_block_no,"No. of Blocks" %>
+  <%= f.text_field :back_block_no %>
+  Left Sleeve <br/>
+  <%= f.label :left_print_method_id,"Print Method" %>
+  <%= f.collection_select(:left_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"}) %><br/>
+  <%= f.label :left_block_no,"No. of Blocks" %>
+  <%= f.text_field :left_block_no %>
+  Right Sleeve <br/>
+  <%= f.label :right_print_method_id,"Print Method" %>
+  <%= f.collection_select(:right_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"}) %><br/>
+  <%= f.label :right_block_no,"No. of Blocks" %>
+  <%= f.text_field :right_block_no %>
+
+  <%= f.label :special_print,"Special Print" %>
+  <%= f.text_field :special_print %>
+
+  <%= f.label :price,"Price" %>
+  <%= f.text_field :price %>
+
+  <%= f.label :cost, "Cost" %>
+  <%= f.text_field :cost %>
+
+  <%= f.label :final_price, "Final Price" %>
+  <%= f.text_field :final_price %>
+
+  <%= f.label :total_cost, "Total Cost" %>
+  <%= f.text_field :total_cost %>
+
+    <%= f.fields_for :additional_infos do |additional_info_form| %>
+      <%= additional_info_form.label :description,"Description:" %>
+      <%= additional_info_form.text_area :description %><br/>
+      <%= additional_info_form.label :price,"Price:" %>
+      <%= additional_info_form.text_field :price %><br/>
+      <%= additional_info_form.link_to_remove "Remove this task" %>
+    <% end %>
+    <p><%= f.link_to_add "Add Additional Info", :additional_infos %></p>
+  <!-- <button > Add Additional Info </button> -->
+  <!-- <button type="button" id="AdditionalInfo" > Add Additional Info </button> -->
+
+<% end %>
+
+<div id="test" > </div>

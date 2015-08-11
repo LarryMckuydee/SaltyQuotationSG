@@ -8,6 +8,15 @@ gem 'pg'
 # Active Admin admin panel gem
 gem 'activeadmin', '~> 1.0.0.pre1'
 
+#country selection
+gem 'country_select', github: 'stefanpenner/country_select'
+
+# JQuery UI
+gem 'jquery-ui-rails'
+
+# Nested form
+gem 'nested_form'
+
 #devise Authentication
 gem 'devise'
 

@@ -3,7 +3,7 @@
 
 <% if apparel_consultant_signed_in? %>
   <%= link_to "Sign out", destroy_apparel_consultant_session_url, method: :delete %>
-  <%= link_to "Click me to add quotation", quotation_index_url %>
+  <%= link_to "Click me to add quotation", quotations_url %>
 <% else %>
   <%= link_to "Sign in", new_apparel_consultant_session_url %>
 <% end %>
