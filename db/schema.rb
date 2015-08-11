@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811041503) do
+ActiveRecord::Schema.define(version: 20150811121542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 20150811041503) do
 
   create_table "additional_infos", force: :cascade do |t|
     t.text     "description"
-    t.integer  "price"
     t.integer  "approval_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "quotation_id"
+    t.integer  "price_cents"
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -182,15 +182,11 @@ ActiveRecord::Schema.define(version: 20150811041503) do
   end
 
   create_table "quotations", force: :cascade do |t|
-    t.integer  "budget"
-    t.integer  "rush_fee"
-    t.integer  "delivery_fee"
     t.integer  "delivered"
     t.datetime "deadline"
     t.integer  "ac_id"
     t.integer  "customer_id"
     t.integer  "approval_id"
-    t.integer  "negotiation_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.integer  "shirt_type_id"
@@ -203,16 +199,21 @@ ActiveRecord::Schema.define(version: 20150811041503) do
     t.integer  "left_print_method_id"
     t.integer  "right_print_method_id"
     t.integer  "special_print"
-    t.integer  "price"
-    t.integer  "cost"
     t.integer  "front_block_no"
     t.integer  "back_block_no"
     t.integer  "left_block_no"
     t.integer  "right_block_no"
     t.integer  "quantity"
     t.string   "design_file_name"
-    t.integer  "final_price"
-    t.integer  "total_cost"
+    t.integer  "budget_cents"
+    t.integer  "rush_fee_cents"
+    t.integer  "delivery_fee_cents"
+    t.integer  "price_cents"
+    t.integer  "cost_cents"
+    t.integer  "min_rpp_cents"
+    t.integer  "max_rpp_cents"
+    t.integer  "actual_price_cents"
+    t.integer  "total_cost_cents"
   end
 
   create_table "shirt_types", force: :cascade do |t|

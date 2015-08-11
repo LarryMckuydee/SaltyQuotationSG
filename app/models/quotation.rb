@@ -1,4 +1,14 @@
 class Quotation < ActiveRecord::Base
+  monetize :budget_cents
+  monetize :rush_fee_cents
+  monetize :delivery_fee_cents
+  monetize :price_cents
+  monetize :cost_cents
+  monetize :min_rpp_cents
+  monetize :max_rpp_cents
+  monetize :actual_price_cents
+  monetize :total_cost_cents
+
   belongs_to :customer
   # belongs_to :design
   belongs_to :shirt_type
@@ -24,10 +34,10 @@ class Quotation < ActiveRecord::Base
   belongs_to :print_method, foreign_key: "right_print_method_id"
   # belongs_to :block_no,foreign_key: "right_block_no_id"
 
-  belongs_to :apparel_consultant,foreign_key: "ac_id"
+  belongs_to :apparel_consultant
 
   # belongs_to :costing
-  belongs_to :negotiation
+  # belongs_to :negotiation
   has_many :additional_infos
 
   accepts_nested_attributes_for :brand
@@ -35,5 +45,6 @@ class Quotation < ActiveRecord::Base
   accepts_nested_attributes_for :fit
   accepts_nested_attributes_for :additional_infos
   accepts_nested_attributes_for :customer
+
 
 end

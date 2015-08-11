@@ -4,7 +4,7 @@ class BrandsController < ApplicationController
   end
 
   def show
-    @brands = Brand.find(params[:select_id])
+    @brand = Brand.find(params[:select_id])
   end
 
   # def create
