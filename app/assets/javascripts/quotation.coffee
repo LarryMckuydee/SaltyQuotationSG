@@ -11,6 +11,7 @@ $(document).ready ->
   #   textField = $("<input type='text' id='AddPrice"+c+"' value = '' >")
   #   $("#new_quotation").append textArea
   #   $("#new_quotation").append textField
+  FitPrice = 0;
   $("#quotation_back_print_method_id").change ->
     $("#quotation_back_block_size_id").empty()
     $("#quotation_back_block_size_id").append $('<option>',{
@@ -53,15 +54,43 @@ $(document).ready ->
                 text: b.block_size_name
               })
 
-  $('#quotation_customers_full_name').autocomplete
-    source: $('#quotation_customers_full_name').data('clsource')
+  # $('#quotation_customers_full_name').autocomplete
+  #   source: $('#quotation_customers_full_name').data('clsource')
+  $('#quotation_fit_id').change ->
+    $.ajax
+      url: "/shirt_types/"+$('#quotation_shirt_type_id').val()
+      dataType: "json"
+      data: { fitid: $('#quotation_fit_id').val(),quantity: $('#quotation_quantity').val()}
+      success: (response) ->
+        FitPrice = response[0].price_cents
+        alert FitPrice
 
-  $("#quotation_brand_id").change ->
+  $("#quotation_shirt_type_id").change ->
     $("#quotation_fit_id").empty()
-    $("#quotation_shirt_type_id").empty()
     $("#quotation_fit_id").append $('<option>',{
         text: "Select A Fit"
       })
+    shirt_type_name = $("#quotation_shirt_type_id option:selected").text()
+    $.ajax
+      url: "/shirt_types.json"
+      dataType: "json"
+      success: (response) ->
+        response.shirt_types.forEach (shirt_type) ->
+          $test_html = $("<div></div>")
+          # alert shirt_type_name
+          # alert shirt_type.shirt_type_name
+          # alert brand.brand
+          # alert brand_name
+          if shirt_type_name.toString() == shirt_type.shirt_type_name.toString()
+            shirt_type.fits.forEach (fit) ->
+              $("#quotation_fit_id").append $('<option>',{
+                value: fit.fit_id,
+                text: fit.fit_name
+              })
+
+
+  $("#quotation_brand_id").change ->
+    $("#quotation_shirt_type_id").empty()
     $("#quotation_shirt_type_id").append $('<option>',{
         text: "Select A Type"
       })
@@ -75,16 +104,41 @@ $(document).ready ->
           # alert brand.brand
           # alert brand_name
           if brand_name.toString() == brand.brand.toString()
-            brand.fits.forEach (fit) ->
-              $("#quotation_fit_id").append $('<option>',{
-                value: fit.fit_id,
-                text: fit.fit_name
-              })
             brand.shirt_types.forEach (shirt_type) ->
               $('#quotation_shirt_type_id').append $('<option>',{
                 value: shirt_type.shirt_type_id,
                 text: shirt_type.shirt_type_name
                 })
+
+  # $("#quotation_brand_id").change ->
+  #   $("#quotation_fit_id").empty()
+  #   $("#quotation_shirt_type_id").empty()
+  #   $("#quotation_fit_id").append $('<option>',{
+  #       text: "Select A Fit"
+  #     })
+  #   $("#quotation_shirt_type_id").append $('<option>',{
+  #       text: "Select A Type"
+  #     })
+  #   brand_name = $("#quotation_brand_id option:selected").text()
+  #   $.ajax
+  #     url: "/brands.json"
+  #     dataType: "json"
+  #     success: (response) ->
+  #       response.forEach (brand) ->
+  #         $test_html = $("<div></div>")
+  #         # alert brand.brand
+  #         # alert brand_name
+  #         if brand_name.toString() == brand.brand.toString()
+  #           brand.fits.forEach (fit) ->
+  #             $("#quotation_fit_id").append $('<option>',{
+  #               value: fit.fit_id,
+  #               text: fit.fit_name
+  #             })
+  #           brand.shirt_types.forEach (shirt_type) ->
+  #             $('#quotation_shirt_type_id').append $('<option>',{
+  #               value: shirt_type.shirt_type_id,
+  #               text: shirt_type.shirt_type_name
+  #               })
           #     $fit_html = $("<div class='fit'>"+fit.fit_name+"</div>")
           #     $test_html.append $fit_html
           # else

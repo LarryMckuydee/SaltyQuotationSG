@@ -45,6 +45,17 @@ class Quotation < ActiveRecord::Base
   accepts_nested_attributes_for :fit
   accepts_nested_attributes_for :additional_infos
   accepts_nested_attributes_for :customer
+  def showprice(shirtid,fitid,methodid,sizeid,quantity,noblock)
+    @shirtprice = ShirtType.all.find(shirtid).shirt_type_fit_relations.where("fit_id = ? AND ?<= end_quantity AND ?>=start_quantity",fitid,quantity,quantity).first.price
+    @printprice = PrintMethod.all.find(methodid).print_method_block_size_relations.where("block_size_id = ? AND ? <= end_quantity AND ? >= start_quantity",sizeid,quantity,quantity).first.price
+    @printblockcharge = PrintMethod.all.find(methodid).print_method_block_size_relations.where("block_size_id = ? AND ? <= end_quantity AND ? >= start_quantity",sizeid,quantity,quantity).first.block_charge_price
+    @price = @shirtprice+@printprice+(@printblockcharge*noblock.to_i)
+  end
 
-
+  def showcost(shirtid,fitid,methodid,sizeid,quantity,noblock)
+    @shirtprice = ShirtType.all.find(shirtid).shirt_type_fit_relations.where("fit_id = ? AND ?<= end_quantity AND ?>=start_quantity",fitid,quantity,quantity).first.price
+    @printprice = PrintMethod.all.find(methodid).print_method_block_size_relations.where("block_size_id = ? AND ? <= end_quantity AND ? >= start_quantity",sizeid,quantity,quantity).first.price
+    @printblockcharge = PrintMethod.all.find(methodid).print_method_block_size_relations.where("block_size_id = ? AND ? <= end_quantity AND ? >= start_quantity",sizeid,quantity,quantity).first.block_charge_price
+    @cost = (@shirtprice+@printprice+(@printblockcharge*noblock.to_i))*quantity.to_i
+  end
 end

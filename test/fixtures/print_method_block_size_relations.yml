@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  print_method_id: 1
+  block_size_id: 1
+  price_cents: 1
+  block_charge_price_cents: 1
+  start: 1
+  end: 1
+
+two:
+  print_method_id: 1
+  block_size_id: 1
+  price_cents: 1
+  block_charge_price_cents: 1
+  start: 1
+  end: 1

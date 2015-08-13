@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811121542) do
+ActiveRecord::Schema.define(version: 20150812045810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,6 +157,17 @@ ActiveRecord::Schema.define(version: 20150811121542) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "print_method_block_size_relations", force: :cascade do |t|
+    t.integer  "print_method_id"
+    t.integer  "block_size_id"
+    t.integer  "price_cents"
+    t.integer  "block_charge_price_cents"
+    t.integer  "start_quantity"
+    t.integer  "end_quantity"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "print_methods", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -214,6 +225,16 @@ ActiveRecord::Schema.define(version: 20150811121542) do
     t.integer  "max_rpp_cents"
     t.integer  "actual_price_cents"
     t.integer  "total_cost_cents"
+  end
+
+  create_table "shirt_type_fit_relations", force: :cascade do |t|
+    t.integer  "shirt_type_id"
+    t.integer  "fit_id"
+    t.integer  "price_cents"
+    t.integer  "start_quantity"
+    t.integer  "end_quantity"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "shirt_types", force: :cascade do |t|

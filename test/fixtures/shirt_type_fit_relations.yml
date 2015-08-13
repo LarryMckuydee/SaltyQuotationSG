@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shirt_type_id: 1
+  fit_id: 1
+  price_cents: 1
+  start: 1
+  end: 1
+
+two:
+  shirt_type_id: 1
+  fit_id: 1
+  price_cents: 1
+  start: 1
+  end: 1

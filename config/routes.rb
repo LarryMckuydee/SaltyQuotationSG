@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  # get 'shirt_types/index'
+
   # get 'print_methods/index'
 
   # get 'customers/index'
+  #
+  get 'quotations/show_price/:shirtid/:fitid/:methodid/:sizeid/:quantity/:noblock' => 'quotations#show_price'
+  get 'quotations/show_cost/:shirtid/:fitid/:methodid/:sizeid/:quantity/:noblock' => 'quotations#show_cost'
 
   get 'fits/show'
 
@@ -9,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :quotations
   resources :brands
+  resources :shirt_types
   resources :customers
   resources :print_methods
 

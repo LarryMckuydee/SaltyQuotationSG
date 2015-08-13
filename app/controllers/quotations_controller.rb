@@ -25,6 +25,16 @@ class QuotationsController < ApplicationController
     @quotation = Quotation.find(params[:id])
   end
 
+  def show_price
+    @show_price = Quotation.new.showprice(params[:shirtid],params[:fitid],params[:methodid],params[:sizeid],params[:quantity],params[:noblock])
+    render :json => @show_price
+  end
+
+  def show_cost
+    @show_cost = Quotation.new.showcost(params[:shirtid],params[:fitid],params[:methodid],params[:sizeid],params[:quantity],params[:noblock])
+    render :json => @show_cost
+  end
+
   def create
     @quotation = current_apparel_consultant.quotations.new(quotation_params)
     # respond_to do |format|
