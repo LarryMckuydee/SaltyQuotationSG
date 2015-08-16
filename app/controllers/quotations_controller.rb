@@ -1,4 +1,5 @@
 class QuotationsController < ApplicationController
+  before_filter :authenticate_apparel_consultant!
   def index
     @quotations = Quotation.all
   end
@@ -93,7 +94,7 @@ class QuotationsController < ApplicationController
     @quotation = Quotation.find(params[:id])
     if @quotation.update(quotation_params)
       # redirect_to @quotation
-      render 'new'
+      redirect_to @quotation
     else
       render 'edit'
     end

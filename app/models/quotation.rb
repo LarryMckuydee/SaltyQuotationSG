@@ -1,4 +1,13 @@
 class Quotation < ActiveRecord::Base
+  validates :customer, presence: true
+  validates :quantity, presence: true
+  validates :shirt_type,presence: true
+  validates :fit,presence: true
+  validates :front_block_no,presence: true,numericality:{less_than:11}
+  validates :back_block_no,presence: true,numericality:{less_than:11}
+  validates :left_block_no,presence: true,numericality:{less_than:11}
+  validates :right_block_no,presence: true,numericality:{less_than:11}
+  validates :special_print,presence: true,numericality:{less_than:3}
   register_currency :myr
   monetize :budget_cents
   monetize :rush_fee_cents

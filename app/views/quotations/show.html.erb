@@ -32,23 +32,23 @@
 
 
     <table id="shirt" class="table table-bordered">
-      <thead>
-        <tr >
+
+        <tr id="top_header">
           <th colspan="4">Shirt</th>
         </tr>
-        <tr>
+        <tr id="mid_header">
           <th>Quantity</th>
           <th>Brand</th>
           <th>Type</th>
           <th>Fit</th>
         </tr>
-      </thead>
-      <tbody>
+
+      <tr>
         <td><%=@quotation.quantity %></td>
         <td><%=@quotation.brand.name %></td>
         <td><%=@quotation.shirt_type.name %></td>
         <td><%=@quotation.fit.name %></td>
-      </tbody>
+      </tr>
     </table>
 
 
@@ -56,17 +56,17 @@
 
 
     <table class="table table-bordered printing_detail" >
-    <thead>
-      <tr>
+
+      <tr id="top_header">
         <th colspan="10">Printing Details</th>
       </tr>
-      <tr>
+      <tr id="mid_header">
         <th colspan="3">Front Print</th>
         <th colspan="3">Back Print</th>
         <th colspan="2">Left Print</th>
         <th colspan="2">Right Print</th>
       </tr>
-      <tr>
+      <tr id="mid_header">
         <th>Print Method</th>
         <th>Block Size</th>
         <th>No. of Blocks</th>
@@ -78,7 +78,7 @@
         <th>Print Method</th>
         <th>No. of Blocks</th>
       </tr>
-    </thead>
+
     <tbody>
       <tr>
         <td><%=@quotation.front_print_method.blank? ? "-".to_s : @quotation.front_print_method.name %></td>
@@ -100,7 +100,7 @@
         <table class="table table-bordered">
           <!-- <thead> -->
 
-            <tr>
+            <tr id="top_header">
               <th colspan="2">Costing</th>
               <th colspan="2">Negotiation</th>
               <th colspan="2">Final Costing</th>
@@ -111,15 +111,15 @@
               <th><%= link_to "Delete", quotation_path(quotation:{id:@quotation.id,approval_id: :nil}),{method: :put,remote: true,class:"ajax_link","data-type"=>"json","data-id"=>@quotation.id} %> </th>
               <% end %>
             </tr>
-            <tr>
+            <tr id="mid_header">
               <th>Price</th>
               <th>Total Cost</th>
               <th>Min.RRP</th>
               <th>Max.RRP</th>
               <th>Price</th>
               <th>Total Cost</th>
-              <td colspan="2" rowspan="2"><%= @quotation.approver.blank? ? "No approve yet" :  @quotation.approver.name %> </td>
-              <td id="transparent_column" width="20%" colspan="2" rowspan="3" style="font-size:10px;">*Special requests (eg. Below standard MOQ 0f 200pcs, rush orders, sponsorships, revise prices below R.R.P., out of the product range etc.) have to be first approved and signed by M.D./E.D./S.D.before getting quotation from the H.O.P.</td>
+              <td colspan="2" rowspan="2" style="background-color:white;"><%= @quotation.approver.blank? ? "No approve yet" :  @quotation.approver.name %> </td>
+              <td id="transparent_column" width="20%" colspan="2" rowspan="3" style="font-size:10px; background-color:white;">*Special requests (eg. Below standard MOQ 0f 200pcs, rush orders, sponsorships, revise prices below R.R.P., out of the product range etc.) have to be first approved and signed by M.D./E.D./S.D.before getting quotation from the H.O.P.</td>
             </tr>
           <!-- </thead> -->
           <!-- <tbody> -->
@@ -138,12 +138,12 @@
 
       <% if !@quotation.additional_infos.blank? %>
       <table class="table table-bordered">
-        <thead>
+        <tr id="top_header">
           <th>Description</th>
           <th>Price</th>
           <th>Approved by MD/ED/HOP</th>
-        </thead>
-        <tbody>
+        </tr>
+
           <% @quotation.additional_infos.each do |additional_info| %>
 
           <div id="errors"></div>
@@ -160,7 +160,7 @@
             <% end %>
           </tr>
           <% end %>
-        </tbody>
+
       </table>
 
       <% end %>

@@ -23,6 +23,9 @@ gem 'devise'
 #form generator
 gem 'prawn'
 
+#Pagination
+gem 'will_paginate','~>3.0.5'
+
 #install bootstrap
 gem 'bootstrap-sass','~> 3.3.5'
 

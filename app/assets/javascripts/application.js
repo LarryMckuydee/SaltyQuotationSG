@@ -17,3 +17,20 @@
 //= require_tree .
 //= require jquery_nested_form
 //= require bootstrap-sprockets
+
+//set class="active"
+function ready(){
+  $(function(){
+      // alert(window.location);
+      $('.navbar ul li a').each(function(i){
+        // alert($(this).attr('href'))
+         if($(this).attr('href')==window.location){
+          $(this).parent().closest('li').prop('class','active')
+         }
+      });
+
+  });
+}
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

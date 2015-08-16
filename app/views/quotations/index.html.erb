@@ -1,4 +1,27 @@
 <h1>Quotation#index</h1>
 <p>Find me in app/views/quotation/index.html.erb</p>
+<table>
+  <tr>
+    <th>QuotationID</th>
+    <th>Client's Name</th>
+    <th>Client Contact</th>
+    <th>Quantity</th>
+    <th>Total Cost</th>
+    <th>Delivery Status</th>
+  </tr>
+<% @quotations.each do |quotation| %>
+  <tr>
+    <td><%= quotation.id %></td>
+    <td><%= quotation.customer.full_name unless quotation.customer.nil? %></td>
+    <td><%= quotation.customer.contact unless quotation.customer.nil? %></td>
+    <td><%= quotation.quantity %></td>
+    <td><%= quotation.total_cost %></td>
+    <td><%= quotation.delivered == 1 ? "Y" : "N" %></td>
+    <td><%= link_to 'Show',quotation_path(quotation) %> </td>
+    <td><%= link_to 'Edit',edit_quotation_path(quotation) %></td>
+    <td><%= link_to 'Delete',quotation_path(quotation),method: :delete, data: {confirm: 'Are you sure you want to delete?'} %></td>
+  </tr>
+<% end %>
+</table>
 <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
 <%= link_to "Create Quotation", new_quotation_url %>
