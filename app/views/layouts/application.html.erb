@@ -7,8 +7,31 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
-<%= yield %>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header"><a class="navbar-brand">SaltyQuotation</a></div>
+      <div id="navbar">
+        <ul class="nav navbar-nav navbar-right">
+         <li class="active"><a>Home</a></li>
+         <li><%= link_to "New",new_quotation_path %></li>
+         <li><%= link_to "Quotation",quotations_path %></li>
+         <% if apparel_consultant_signed_in? %>
+
+         <li><%= link_to "Sign out", destroy_apparel_consultant_session_url, method: :delete %></li>
+
+         <% else %>
+           <li><%= link_to "Sign in", new_apparel_consultant_session_url %></li>
+         <% end %>
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="inner">
+    <div class="container">
+  <%= yield %>
+    </div>
   </div>
 </body>
 </html>

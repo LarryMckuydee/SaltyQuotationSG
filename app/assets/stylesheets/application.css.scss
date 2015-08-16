@@ -20,6 +20,26 @@
 
  }
 
+ .navbar-default {
+
+ }
+
+ .navbar-default > li {
+   display: inline-block;
+   margin-top: 30px;
+ }
+ .navbar-default > li + li {
+   margin-left: 20px;
+ }
+
+ .navbar-nav >li > a{
+   text-decoration: none;
+ }
+
  body {
    font-family: 'Open Sans', sans-serif;
+ }
+
+ .inner{
+   padding: 60px;
  }

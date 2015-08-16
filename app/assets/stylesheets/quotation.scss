@@ -2,6 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//new
+#second-level-fieldset{
+  padding: 20px
+}
+
+#customer_info_tab{
+  border: 1px solid black;
+  padding: 20px;
+}
+
+// show
 div[name="shirt"] {
   height: 120px;
   width:600px;
@@ -12,6 +23,8 @@ table th,table td{
   text-align: center;
 }
 //
+
+
 #customer_info {
   float:left;
 }
@@ -30,5 +43,5 @@ table th,table td{
 }
 
 #transparent_column{
-  
+
 }

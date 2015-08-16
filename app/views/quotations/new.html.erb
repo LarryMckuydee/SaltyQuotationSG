@@ -1,5 +1,9 @@
+
+<%  if !apparel_consultant_signed_in? %>
+    <% redirect_to new_apparel_consultant_session_url %>
+  <% end %>
 <% if @quotation.errors.any? %>
-  <div>
+  <div class="alert alert-danger">
     <h2>
       <!--%= @article.errors.count %> error prohibited this article from being saved:-->
 
@@ -13,118 +17,287 @@
     </ul>
   </div>
 <% end %>
-<%= nested_form_for @quotation do |f| %>
+<%= nested_form_for @quotation,html:{class:"form-horizontal"} do |f| %>
 
+<fieldset>
+  <legend>Client Info</legend>
   <%= f.fields_for :customer,@quotation.customer do |customer_fields| %>
-    <%= customer_fields.label :full_name,"Client's Name:" %>
-    <!-- <%= customer_fields.text_field :full_name,data: {clsource: customers_path} %><br/> -->
-    <%= customer_fields.text_field :full_name%><br/>
-    <%= customer_fields.label :contact,"Client's Contact Number:" %>
-    <%= customer_fields.text_field :contact%><br/>
-    <%= customer_fields.label :address_line1,"Client's Address Line 1:" %>
-    <%= customer_fields.text_field :address_line1 %><br/>
-    <%= customer_fields.label :address_line2,"Client's Address Line 2:" %>
-    <%= customer_fields.text_field :address_line2 %><br/>
-    <%= customer_fields.label :address_line3,"Client's Address Line 3:" %>
-    <%= customer_fields.text_field :address_line3 %><br/>
-    <%= customer_fields.label :city,"Client's City:" %>
-    <%= customer_fields.text_field :city %><br/>
-    <%= customer_fields.label :postal,"Client's Postal:" %>
-    <%= customer_fields.text_field :postal %><br/>
-    <%= customer_fields.label :state,"Client's State:" %>
-    <%= customer_fields.text_field :state %><br/>
-    <%= customer_fields.label :country,"Client's Country:" %>
+
+    <div class="form-group">
+      <%= customer_fields.label :full_name,"Client's Name:",class:"col-sm-2 control-label" %>
+      <!-- <%= customer_fields.text_field :full_name,data: {clsource: customers_path} %><br/> -->
+      <div class="col-sm-10">
+        <%= customer_fields.text_field :full_name,class:"form-control"%><br/>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= customer_fields.label :contact,"Client's Contact Number:",class:"col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= customer_fields.text_field :contact,class:"form-control"%><br/>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= customer_fields.label :address_line1,"Client's Address Line 1:",class:"col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= customer_fields.text_field :address_line1,class:"form-control" %><br/>
+      </div>
+    </div>
+    <div class="form-group">
+    <%= customer_fields.label :address_line2,"Client's Address Line 2:",class:"col-sm-2 control-label" %>
+      <div class = "col-sm-10">
+        <%= customer_fields.text_field :address_line2,class:"form-control" %><br/>
+      </div>
+    </div>
+    <div class="form-group">
+    <%= customer_fields.label :address_line3,"Client's Address Line 3:",class:"col-sm-2 control-label" %>
+      <div class = "col-sm-10">
+        <%= customer_fields.text_field :address_line3,class:"form-control" %><br/>
+      </div>
+    </div>
+    <div class="form-group">
+    <%= customer_fields.label :city,"Client's City:",class:"col-sm-2 control-label" %>
+      <div class = "col-sm-10">
+        <%= customer_fields.text_field :city,class:"form-control" %><br/>
+      </div>
+    </div>
+    <div class="form-group">
+    <%= customer_fields.label :postal,"Client's Postal:",class:"col-sm-2 control-label" %>
+      <div class = "col-sm-10">
+        <%= customer_fields.text_field :postal,class:"form-control" %><br/>
+      </div>
+    </div>
+    <div class="form-group">
+    <%= customer_fields.label :state,"Client's State:",class:"col-sm-2 control-label" %>
+      <div class = "col-sm-10">
+        <%= customer_fields.text_field :state,class:"form-control" %><br/>
+      </div>
+    </div>
+    <div class="form-group">
+    <%= customer_fields.label :country,"Client's Country:",class:"col-sm-2 control-label" %>
+      <div class = "col-sm-10">
     <!-- <%= customer_fields.text_field :country %> -->
-    <%= customer_fields.country_select("country") %><br/>
+    <%= customer_fields.country_select("country",{},{class:"form-control"}) %><br/>
+      </div>
+    </div>
   <% end %>
+</fieldset>
+<fieldset>
+  <legend>Basic Info</legend>
+  <div class="form-group">
+    <%= f.label :design_file_name,"Design File Name:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :design_file_name,class:"form-control" %><br/>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :budget_cents,"Client's Budget:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :budget_cents,class:"form-control" %><br/>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :deadline,"Client's Deadline:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.datetime_select :deadline,{},{class:"form-control-static"} %><br/>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :rush_fee_cents,"Rush Order Fee:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :rush_fee_cents,class:"form-control" %><br/>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :delivered, "Delivery:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.select(:delivered,[["No",0],["Yes",1]],{},{class:"form-control"}) %><br/>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :delivery_fee_cents, "Delivery Fee:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :delivery_fee_cents,class:"form-control" %><br/>
+    </div>
+  </div>
+</fieldset>
 
-  <%= f.label :design_file_name,"Design File Name:" %>
-  <%= f.text_field :design_file_name %><br/>
-
-  <%= f.label :budget_cents,"Client's Budget:" %>
-  <%= f.text_field :budget_cents %><br/>
-
-  <%= f.label :deadline,"Client's Deadline:" %>
-  <%= f.datetime_select :deadline %><br/>
-
-  <%= f.label :rush_fee_cents,"Rush Order Fee:" %>
-  <%= f.text_field :rush_fee_cents %><br/>
-
-  <%= f.label :delivered, "Delivery:" %>
-  <%= f.select(:delivered,[["No",0],["Yes",1]]) %><br/>
-
-  <%= f.label :delivery_fee_cents, "Delivery Fee:" %>
-  <%= f.text_field :delivery_fee_cents %><br/>
-
-  <%= f.label :quantity, "Quantity:" %>
-  <%= f.text_field :quantity %><br/>
-
-  <%= f.label :brand_id,"Brand:" %>
-    <%= f.collection_select(:brand_id,Brand.order(:name),:id,:name,{prompt:"Select A Brand"}) %> <br/>
-
-  <%=f.label :shirt_type_id,"Shirt Type:" %>
-    <%= f.collection_select(:shirt_type_id,ShirtType.order(:name),:id,:name,{:prompt => "Select A Type"}) %><br/>
-
-  <%=f.label :fit_id,"Fit:"%>
-    <%= f.collection_select(:fit_id,Fit.order(:name),:id,:name,{:prompt => "Select A Fit"}) %><br/>
-
-  Front Print <br/>
-  <%= f.label :front_print_method_id,"Print Method:" %>
-  <%= f.collection_select(:front_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"}) %><br/>
-  <%= f.label :front_block_size_id,"Block Size:" %>
-  <%= f.collection_select(:front_block_size_id,BlockSize.order(:name),:id,:name,{:prompt => "Select A Block Size"}) %><br/>
-  <%= f.label :front_block_no,"No. of Blocks:" %>
-  <%= f.text_field :front_block_no %><br/>
-  Back Print <br/>
-  <%= f.label :back_print_method_id,"Print Method:" %>
-  <%= f.collection_select(:back_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"}) %><br/>
-  <%= f.label :back_block_size_id,"Block Size:" %>
-  <%= f.collection_select(:back_block_size_id,BlockSize.order(:name),:id,:name,{:prompt => "Select A Block Size"}) %><br/>
-  <%= f.label :back_block_no,"No. of Blocks:" %>
-  <%= f.text_field :back_block_no %><br/>
-  Left Sleeve <br/>
-  <%= f.label :left_print_method_id,"Print Method:" %>
-  <%= f.collection_select(:left_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"}) %><br/>
-  <%= f.label :left_block_no,"No. of Blocks:" %>
-  <%= f.text_field :left_block_no %><br/>
-  Right Sleeve <br/>
-  <%= f.label :right_print_method_id,"Print Method:" %>
-  <%= f.collection_select(:right_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"}) %><br/>
-  <%= f.label :right_block_no,"No. of Blocks:" %>
-  <%= f.text_field :right_block_no %><br/>
-
-  <%= f.label :special_print,"Special Print:" %>
-  <%= f.text_field :special_print %><br/>
-
-  <%= f.label :price_cents,"Price:" %>
-  <%= f.text_field :price_cents %><br/>
-
-  <%= f.label :cost_cents, "Cost:" %>
-  <%= f.text_field :cost_cents %><br/>
-
-  <%= f.label :min_rrp_cents, "Min RRP:" %>
-  <%= f.text_field :min_rrp_cents %><br/>
-
-  <%= f.label :max_rrp_cents, "Max RRP:" %>
-  <%= f.text_field :max_rrp_cents %><br/>
-
-  <%= f.label :actual_price_cents, "Final Price:" %>
-  <%= f.text_field :actual_price_cents,{value: 0} %><br/>
-
-  <%= f.label :total_cost_cents, "Total Cost:" %>
-  <%= f.text_field :total_cost_cents,{value: 0} %><br/>
-
+<fieldset>
+  <legend>Shirt</legend>
+  <div class="form-group">
+    <%= f.label :quantity, "Quantity:",class:"col-sm-2 control-label"%>
+    <div class="col-sm-10">
+      <%= f.text_field :quantity,class:"form-control" %><br/>
+  </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :brand_id,"Brand:",class:"col-sm-2 control-label"%>
+    <div class="col-sm-10">
+      <%= f.collection_select(:brand_id,Brand.order(:name),:id,:name,{prompt:"Select A Brand"},{class:"form-control"}) %> <br/>
+    </div>
+  </div>
+  <div class="form-group">
+    <%=f.label :shirt_type_id,"Shirt Type:",class:"col-sm-2 control-label"%>
+    <div class="col-sm-10">
+      <%= f.collection_select(:shirt_type_id,ShirtType.order(:name),:id,:name,{:prompt => "Select A Type"},{class:"form-control"}) %><br/>
+    </div>
+  </div>
+  <div class="form-group">
+    <%=f.label :fit_id,"Fit:",class:"col-sm-2 control-label"%>
+    <div class="col-sm-10">
+      <%= f.collection_select(:fit_id,Fit.order(:name),:id,:name,{:prompt => "Select A Fit"},{class:"form-control"}) %><br/>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+  <legend>Printing Details</legend>
+  <fieldset id="second-level-fieldset">
+  <legend>Front Print </legend>
+  <div class="form-group">
+    <%= f.label :front_print_method_id,"Print Method:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select(:front_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"},{class:"form-control"}) %><br/>
+    </div>
+    </div>
+    <div class="form-group">
+    <%= f.label :front_block_size_id,"Block Size:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select(:front_block_size_id,BlockSize.order(:name),:id,:name,{:prompt => "Select A Block Size"},{class:"form-control"}) %><br/>
+    </div>
+    </div>
+    <div class="form-group">
+    <%= f.label :front_block_no,"No. of Blocks:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :front_block_no,class:"form-control" %><br/>
+    </div>
+    </div>
+  </fieldset>
+  <fieldset id="second-level-fieldset">
+  <legend>Back Print  </legend>
+  <div class="form-group">
+    <%= f.label :back_print_method_id,"Print Method:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select(:back_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"},{class:"form-control"}) %><br/>
+    </div>
+    </div>
+    <div class="form-group">
+    <%= f.label :back_block_size_id,"Block Size:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select(:back_block_size_id,BlockSize.order(:name),:id,:name,{:prompt => "Select A Block Size"},{class:"form-control"}) %><br/>
+    </div>
+    </div>
+    <div class="form-group">
+    <%= f.label :back_block_no,"No. of Blocks:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :back_block_no,class:"form-control" %><br/>
+    </div>
+    </div>
+  </fieldset>
+  <fieldset id="second-level-fieldset">
+  <legend>Left Sleeve </legend>
+  <div class="form-group">
+    <%= f.label :left_print_method_id,"Print Method:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select(:left_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"},{class:"form-control"}) %><br/>
+    </div>
+    </div>
+    <div class="form-group">
+    <%= f.label :left_block_no,"No. of Blocks:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :left_block_no,class:"form-control" %><br/>
+    </div>
+    </div>
+  </fieldset>
+  <fieldset id="second-level-fieldset">
+  <legend>Right Sleeve </legend>
+  <div class="form-group">
+    <%= f.label :right_print_method_id,"Print Method:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select(:right_print_method_id,PrintMethod.order(:name),:id,:name,{:prompt => "Select A Print Method"},{class:"form-control"}) %><br/>
+    </div>
+    </div>
+    <div class="form-group">
+    <%= f.label :right_block_no,"No. of Blocks:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :right_block_no,class:"form-control" %><br/>
+    </div>
+    </div>
+  </fieldset>
+    <div class="form-group">
+    <%= f.label :special_print,"Special Print:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :special_print,class:"form-control" %><br/>
+    </div>
+    </div>
+</fieldset>
+ <%= f.button "Calculate" , {type: "button",id:"calculate",class:"btn btn-info"} %>
+<fieldset>
+  <legend>Costing</legend>
+    <div class="form-group">
+    <%= f.label :price_cents,"Price:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :price_cents,class:"form-control" %><br/>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :cost_cents, "Cost:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :cost_cents,class:"form-control" %><br/>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+  <legend>Negotiations</legend>
+    <div class="form-group">
+    <%= f.label :min_rrp_cents, "Min RRP:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :min_rrp_cents,class:"form-control" %><br/>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :max_rrp_cents, "Max RRP:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :max_rrp_cents,class:"form-control" %><br/>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+  <legend>Final Costing</legend>
+    <div class="form-group">
+    <%= f.label :actual_price_cents, "Final Price:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :actual_price_cents,{value: 0,class:"form-control"} %><br/>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :total_cost_cents, "Total Cost:",class:"col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :total_cost_cents,{value: 0,class:"form-control"} %><br/>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+  <legend>Additional Info</legend>
     <%= f.fields_for :additional_infos do |additional_info_form| %>
-      <%= additional_info_form.label :description,"Description:" %>
-      <%= additional_info_form.text_area :description %><br/>
-      <%= additional_info_form.label :price_cents,"Price:" %>
-      <%= additional_info_form.text_field :price_cents %><br/>
+      <div class="form-group">
+        <%= additional_info_form.label :description,"Description:",class:"col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= additional_info_form.text_area :description,class:"form-control" %><br/>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= additional_info_form.label :price_cents,"Price:",class:"col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= additional_info_form.text_field :price_cents,class:"form-control" %><br/>
+        </div>
+      </div>
       <%= additional_info_form.link_to_remove "Remove this task" %>
     <% end %>
+</fieldset>
     <p><%= f.link_to_add "Add Additional Info", :additional_infos %></p>
+
   <!-- <button > Add Additional Info </button> -->
-  <!-- <button type="button" id="AdditionalInfo" > Add Additional Info </button> -->
-  <%= button_to "Submit" %> <%= f.button "Calculate" , {type: "button",id:"calculate"} %>
+  <button type="submit" class="btn btn-primary" >Submit </button>
+  <!-- <%= button_to "Submit",{type:"submit",class:"btn btn-primary"} %> -->
 <% end %>
 
 <div id="test" > </div>
