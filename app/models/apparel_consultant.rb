@@ -4,5 +4,6 @@ class ApparelConsultant < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :quotations, foreign_key: "ac_id"
+  has_many :additional_infos,foreign_key: "approval_id"
   accepts_nested_attributes_for :quotations
 end

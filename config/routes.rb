@@ -5,10 +5,14 @@ Rails.application.routes.draw do
 
   # get 'customers/index'
   #
-  get 'quotations/show_price/:shirtid/:fitid/:methodid/:sizeid/:quantity/:noblock' => 'quotations#show_price'
-  get 'quotations/show_cost/:shirtid/:fitid/:methodid/:sizeid/:quantity/:noblock' => 'quotations#show_cost'
-
+  # get 'show_price/:shirt_type_id/:fit_id/:front_print_method_id/:front_block_size_id/:front_block_no/:back_print_method_id/:back_block_size_id/:back_block_no/:left_print_method_id/:left_block_no/:right_print_method_id/:right_block_no/:quantity/:special_print' => 'quotations#show_price'
+  get 'show_price'=>'quotations#show_price'
+  get 'show_total_cost/:id' => 'quotations#show_total_cost'
+  # get 'show_cost'=>'quotations#show_cost'
+  # get 'quotations/show_cost/:shirtid/:fitid/:methodid/:sizeid/:quantity/:noblock' => 'quotations#show_cost'
+  # get 'quotations/show_cost/:shirt_type_id/:fit_id/:front_print_method_id/:front_block_size_id/:front_block_no/:back_print_method_id/:back_block_size_id/:back_block_no/:left_print_method_id/:left_block_no/:right_print_method_id/:right_block_no/:quantity/:special_print' => 'quotations#show_cost'
   get 'fits/show'
+  # get 'generateform' => 'home#generateform'
 
   # get 'brands/index'
 
@@ -17,6 +21,7 @@ Rails.application.routes.draw do
   resources :shirt_types
   resources :customers
   resources :print_methods
+  resources :additional_infos
 
   #get 'home/index'
   root 'home#index'

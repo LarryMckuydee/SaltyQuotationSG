@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812045810) do
+ActiveRecord::Schema.define(version: 20150814113810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20150812045810) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.integer  "approve_right"
   end
 
   add_index "apparel_consultants", ["email"], name: "index_apparel_consultants_on_email", unique: true, using: :btree
@@ -166,6 +167,7 @@ ActiveRecord::Schema.define(version: 20150812045810) do
     t.integer  "end_quantity"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "is_primary"
   end
 
   create_table "print_methods", force: :cascade do |t|
@@ -221,8 +223,8 @@ ActiveRecord::Schema.define(version: 20150812045810) do
     t.integer  "delivery_fee_cents"
     t.integer  "price_cents"
     t.integer  "cost_cents"
-    t.integer  "min_rpp_cents"
-    t.integer  "max_rpp_cents"
+    t.integer  "min_rrp_cents"
+    t.integer  "max_rrp_cents"
     t.integer  "actual_price_cents"
     t.integer  "total_cost_cents"
   end

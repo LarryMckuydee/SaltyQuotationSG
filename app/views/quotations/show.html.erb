@@ -1,3 +1,166 @@
 <p> Show for Quotation </p>
 <%= @quotation.customer.full_name %>
 <%= @quotation.inspect %>
+<br/>
+
+<div id="quotation">
+  <%= image_tag(asset_path("saltylogoblack.png"), size: "400x67") %>
+
+  <h3><strong><u>Quotation Form</u></strong></h3>
+  <div id="customer_info">
+  <p><label>Client's Name:</label><%= @quotation.customer.full_name %><br/>
+  <label>Contact Number:</label><%= @quotation.customer.contact %><br/>
+  <label>Address:</label><br/>
+  <div>
+  <%= @quotation.customer.address_line1 %>
+  <%= @quotation.customer.address_line2 %>
+  <%= @quotation.customer.address_line3 %>
+  </div>
+  </p>
+  </div>
+  <div id="apparel_consultant_info">
+    <label>Date & Time:</label><%= @quotation.created_at %><br/>
+    <label>Apparel Consultant:</label><%= @quotation.apparel_consultant.blank? ? "No AC's?" : @quotation.apparel_consultant.name %><br/>
+    <label>Design File Name:</label><%= @quotation.design_file_name %><br/>
+    <label>Client's Budget:</label><%= @quotation.budget.to_s %><br/>
+    <label>Client's Deadline:</label><%= @quotation.deadline %><br/>
+    <label>Rush Order Fee:</label><%= @quotation.rush_fee.to_s %><br/>
+    <label>Delivery:</label><%= @quotation.delivered == 1 ? "Y" : "N" %><br/>
+    <label>Delivery Fee:</label><%= @quotation.delivery_fee.to_s %><br/>
+  </div>
+
+
+
+    <table id="shirt" class="table table-bordered">
+      <thead>
+        <tr >
+          <th colspan="4">Shirt</th>
+        </tr>
+        <tr>
+          <th>Quantity</th>
+          <th>Brand</th>
+          <th>Type</th>
+          <th>Fit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <td><%=@quotation.quantity %></td>
+        <td><%=@quotation.brand.name %></td>
+        <td><%=@quotation.shirt_type.name %></td>
+        <td><%=@quotation.fit.name %></td>
+      </tbody>
+    </table>
+
+
+
+
+
+    <table class="table table-bordered printing_detail" >
+    <thead>
+      <tr>
+        <th colspan="10">Printing Details</th>
+      </tr>
+      <tr>
+        <th colspan="3">Front Print</th>
+        <th colspan="3">Back Print</th>
+        <th colspan="2">Left Print</th>
+        <th colspan="2">Right Print</th>
+      </tr>
+      <tr>
+        <th>Print Method</th>
+        <th>Block Size</th>
+        <th>No. of Blocks</th>
+        <th>Print Method</th>
+        <th>Block Size</th>
+        <th>No. of Blocks</th>
+        <th>Print Method</th>
+        <th>No. of Blocks</th>
+        <th>Print Method</th>
+        <th>No. of Blocks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%=@quotation.front_print_method.blank? ? "-".to_s : @quotation.front_print_method.name %></td>
+        <td><%=@quotation.front_block_size.blank? ? "-".to_s : @quotation.front_block_size.name %></td>
+        <td><%=@quotation.front_block_no.blank? ? "-".to_s : @quotation.front_block_no %></td>
+        <td><%=@quotation.back_print_method.blank? ? "-".to_s : @quotation.back_print_method.name %></td>
+        <td><%=@quotation.back_block_size.blank? ? "-".to_s : @quotation.back_block_size.name %></td>
+        <td><%=@quotation.back_block_no.blank? ? "-".to_s : @quotation.back_block_no %></td>
+        <td><%=@quotation.left_print_method.blank? ? "-".to_s : @quotation.left_print_method.name %></td>
+        <td><%=@quotation.left_block_no.blank? ? "-".to_s : @quotation.left_block_no %></td>
+        <td><%=@quotation.right_print_method.blank? ? "-".to_s : @quotation.right_print_method.name %></td>
+        <td><%=@quotation.right_block_no.blank? ? "-".to_s : @quotation.right_block_no %></td>
+      </tr>
+    </tbody>
+    </table>
+
+
+
+        <table class="table table-bordered">
+          <!-- <thead> -->
+
+            <tr>
+              <th colspan="2">Costing</th>
+              <th colspan="2">Negotiation</th>
+              <th colspan="2">Final Costing</th>
+              <th colspan="2">Approved by MD/ED/HOP</th>
+              <% if current_apparel_consultant.approve_right==1 %>
+
+              <th><%= link_to "Approve", quotation_path(quotation:{id:@quotation.id,approval_id: current_apparel_consultant.id}),{method: :put,remote: true,class:"ajax_link","data-type"=>"json","data-id"=>@quotation.id} %></th>
+              <th><%= link_to "Delete", quotation_path(quotation:{id:@quotation.id,approval_id: :nil}),{method: :put,remote: true,class:"ajax_link","data-type"=>"json","data-id"=>@quotation.id} %> </th>
+              <% end %>
+            </tr>
+            <tr>
+              <th>Price</th>
+              <th>Total Cost</th>
+              <th>Min.RRP</th>
+              <th>Max.RRP</th>
+              <th>Price</th>
+              <th>Total Cost</th>
+              <td colspan="2" rowspan="2"><%= @quotation.approver.blank? ? "No approve yet" :  @quotation.approver.name %> </td>
+              <td id="transparent_column" width="20%" colspan="2" rowspan="3" style="font-size:10px;">*Special requests (eg. Below standard MOQ 0f 200pcs, rush orders, sponsorships, revise prices below R.R.P., out of the product range etc.) have to be first approved and signed by M.D./E.D./S.D.before getting quotation from the H.O.P.</td>
+            </tr>
+          <!-- </thead> -->
+          <!-- <tbody> -->
+            <tr>
+              <td><%= @quotation.price.to_s %></td>
+              <td><%= @quotation.cost.to_s %></td>
+              <td><%= @quotation.min_rrp.to_s %></td>
+              <td><%= @quotation.max_rrp.to_s %></td>
+              <td><%= @quotation.actual_price.to_s %></td>
+              <td><%= @quotation.total_cost.to_s %></td>
+
+            </tr>
+          <!-- </tbody> -->
+        </table>
+      </div>
+
+      <% if !@quotation.additional_infos.blank? %>
+      <table class="table table-bordered">
+        <thead>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Approved by MD/ED/HOP</th>
+        </thead>
+        <tbody>
+          <% @quotation.additional_infos.each do |additional_info| %>
+
+          <div id="errors"></div>
+
+          <tr>
+            <td width="60%"><%= additional_info.description %> </td>
+            <td><%= additional_info.price.to_s %> </td>
+            <% if current_apparel_consultant.approve_right==1 %>
+              <td><%= additional_info.apparel_consultant.blank? ? "No approve yet" :  additional_info.apparel_consultant.name %> </td>
+              <td><%= link_to "Approve", additional_info_path(id:additional_info.id, approval_id: current_apparel_consultant.id),{method: :put,remote: true,class:"ajax_link","data-id"=>@quotation.id} %></td>
+              <td><%= link_to "Delete", additional_info_path(id:additional_info.id, approval_id: :nil),{method: :put,remote: true,class:"ajax_link","data-id"=>@quotation.id} %> </td>
+            <% else %>
+              <td><%= additional_info.apparel_consultant.blank? ? "No approve yet" :  additional_info.apparel_consultant.name %> </td>
+            <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <% end %>

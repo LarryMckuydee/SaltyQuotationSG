@@ -20,6 +20,9 @@ gem 'nested_form'
 #devise Authentication
 gem 'devise'
 
+#form generator
+gem 'prawn'
+
 #install bootstrap
 gem 'bootstrap-sass','~> 3.3.5'
 

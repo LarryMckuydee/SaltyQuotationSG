@@ -1,4 +1,18 @@
+<% if @quotation.errors.any? %>
+  <div>
+    <h2>
+      <!--%= @article.errors.count %> error prohibited this article from being saved:-->
 
+      <!-- This is added a 's' on 'error' if there is more than one error -->
+      <%= pluralize(@quotation.errors.count,"error") %> prohibited this quotations from being saved:
+    </h2>
+    <ul>
+      <% @quotation.errors.full_messages.each do |msg| %>
+        <li><%=msg%></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <%= nested_form_for @quotation do |f| %>
 
   <%= f.fields_for :customer,@quotation.customer do |customer_fields| %>
@@ -48,13 +62,11 @@
   <%= f.label :brand_id,"Brand:" %>
     <%= f.collection_select(:brand_id,Brand.order(:name),:id,:name,{prompt:"Select A Brand"}) %> <br/>
 
+  <%=f.label :shirt_type_id,"Shirt Type:" %>
+    <%= f.collection_select(:shirt_type_id,ShirtType.order(:name),:id,:name,{:prompt => "Select A Type"}) %><br/>
 
   <%=f.label :fit_id,"Fit:"%>
     <%= f.collection_select(:fit_id,Fit.order(:name),:id,:name,{:prompt => "Select A Fit"}) %><br/>
-
-
-  <%=f.label :shirt_type_id,"Shirt Type:" %>
-    <%= f.collection_select(:shirt_type_id,ShirtType.order(:name),:id,:name,{:prompt => "Select A Type"}) %><br/>
 
   Front Print <br/>
   <%= f.label :front_print_method_id,"Print Method:" %>
@@ -90,17 +102,17 @@
   <%= f.label :cost_cents, "Cost:" %>
   <%= f.text_field :cost_cents %><br/>
 
-  <%= f.label :min_rpp_cents, "Min RPP:" %>
-  <%= f.text_field :min_rpp_cents %><br/>
+  <%= f.label :min_rrp_cents, "Min RRP:" %>
+  <%= f.text_field :min_rrp_cents %><br/>
 
-  <%= f.label :max_rpp_cents, "Max RPP:" %>
-  <%= f.text_field :max_rpp_cents %><br/>
+  <%= f.label :max_rrp_cents, "Max RRP:" %>
+  <%= f.text_field :max_rrp_cents %><br/>
 
   <%= f.label :actual_price_cents, "Final Price:" %>
-  <%= f.text_field :actual_price_cents %><br/>
+  <%= f.text_field :actual_price_cents,{value: 0} %><br/>
 
   <%= f.label :total_cost_cents, "Total Cost:" %>
-  <%= f.text_field :total_cost_cents %><br/>
+  <%= f.text_field :total_cost_cents,{value: 0} %><br/>
 
     <%= f.fields_for :additional_infos do |additional_info_form| %>
       <%= additional_info_form.label :description,"Description:" %>
@@ -112,7 +124,7 @@
     <p><%= f.link_to_add "Add Additional Info", :additional_infos %></p>
   <!-- <button > Add Additional Info </button> -->
   <!-- <button type="button" id="AdditionalInfo" > Add Additional Info </button> -->
-  <%= button_to "Submit" %>
+  <%= button_to "Submit" %> <%= f.button "Calculate" , {type: "button",id:"calculate"} %>
 <% end %>
 
 <div id="test" > </div>

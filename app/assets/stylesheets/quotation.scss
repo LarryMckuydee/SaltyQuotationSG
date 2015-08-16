@@ -1,3 +1,34 @@
 // Place all the styles related to the Quotation controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div[name="shirt"] {
+  height: 120px;
+  width:600px;
+  border: 1px solid black;
+}
+
+table th,table td{
+  text-align: center;
+}
+//
+#customer_info {
+  float:left;
+}
+
+#apparel_consultant_info {
+  float:right;
+}
+
+#shirt{
+  width:800px;
+}
+
+@media print {
+    size: 21cm 29.7cm;
+    margin: 30mm 45mm 30mm 45mm; /* change the margins as you want them to be. */
+}
+
+#transparent_column{
+  
+}

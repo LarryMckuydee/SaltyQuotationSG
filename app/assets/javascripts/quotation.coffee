@@ -4,7 +4,16 @@
 
 # alert 'hello'
 
-$(document).ready ->
+ready = ->
+
+  $('.ajax_link').bind('ajax:error',(evt,data,status,xhr) ->
+      $('div#errors').append data
+    ).bind('ajax:success',(evt,data,status,xhr) ->
+      # $(this).parent().closest
+      alert "Updated"
+      alert $(this).data('id')
+      location.reload()
+    )
   # c=0;
   # $("#AdditionalInfo").click ->
   #   textArea = $("<textarea id ='AddDesc"+c+"'rows='5' cols='20'></textarea>")
@@ -56,14 +65,42 @@ $(document).ready ->
 
   # $('#quotation_customers_full_name').autocomplete
   #   source: $('#quotation_customers_full_name').data('clsource')
-  $('#quotation_fit_id').change ->
+
+  $('#calculate').click ->
     $.ajax
-      url: "/shirt_types/"+$('#quotation_shirt_type_id').val()
+      url: "/show_price"
       dataType: "json"
-      data: { fitid: $('#quotation_fit_id').val(),quantity: $('#quotation_quantity').val()}
+      data: {
+        shirt_type_id:  $('#quotation_shirt_type_id').val()
+        fit_id: $('#quotation_fit_id').val()
+        front_print_method_id: $('#quotation_front_print_method_id').val()
+        front_block_size_id: $('#quotation_front_block_size_id').val()
+        front_block_no: $('#quotation_front_block_no').val()
+        back_print_method_id: $('#quotation_back_print_method_id').val()
+        back_block_size_id: $('#quotation_back_block_size_id').val()
+        back_block_no: $('#quotation_back_block_no').val()
+        left_print_method_id: $('#quotation_left_print_method_id').val()
+        left_block_no: $('#quotation_left_block_no').val()
+        right_print_method_id: $('#quotation_right_print_method_id').val()
+        right_block_no: $('#quotation_right_block_no').val()
+        quantity: $('#quotation_quantity').val()
+        special_print: $('#quotation_special_print').val()
+      }
       success: (response) ->
-        FitPrice = response[0].price_cents
-        alert FitPrice
+        $("#quotation_price_cents").val(response.price)
+        $("#quotation_cost_cents").val(response.cost)
+        $('#quotation_min_rrp_cents').val(response.min_rrp)
+        $('#quotation_max_rrp_cents').val(response.max_rrp)
+
+
+  # $('#quotation_fit_id').change ->
+  #   $.ajax
+  #     url: "/shirt_types/"+$('#quotation_shirt_type_id').val()
+  #     dataType: "json"
+  #     data: { fitid: $('#quotation_fit_id').val(),quantity: $('#quotation_quantity').val()}
+  #     success: (response) ->
+  #       FitPrice = response[0].price_cents
+  #       alert FitPrice
 
   $("#quotation_shirt_type_id").change ->
     $("#quotation_fit_id").empty()
@@ -176,3 +213,5 @@ $(document).ready ->
 #           $fit_html = $("<div class='fit'>"+fit.fit+"</div>")
 #           $brand_html.append $fit_html
 #         $("#test").append $brand_html
+$(document).ready(ready)
+$(document).on('page:load', ready)
