@@ -8,7 +8,7 @@ class AdditionalInfo < ActiveRecord::Base
     additional_infos = AdditionalInfo.all.where(quotation_id:quotation_id)
     additional_price = 0
     if additional_infos.any?
-      additional_infos do |additional_info|
+      additional_infos.each do |additional_info|
         additional_price = additional_price + additional_info.price_cents
       end
     end

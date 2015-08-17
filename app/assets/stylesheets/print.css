@@ -1,0 +1,45 @@
+/*
+ *= require print
+ */
+@media print and (color){
+    size: 21cm 29.7cm;
+    margin: 30mm 45mm 30mm 45mm; /* change the margins as you want them to be. */
+    * {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    #top_header{
+      background-color: black !important;
+      color:white !important;
+
+    }
+
+    #mid_header{
+      background-color: lightgray !important;
+
+    }
+    div[name="shirt"] {
+      height: 120px;
+      width:600px;
+      border: 1px solid black;
+    }
+
+    table th,table td{
+      text-align: center;
+    }
+    //
+
+
+    #customer_info {
+      float:left;
+    }
+
+    #apparel_consultant_info {
+      float:right;
+    }
+
+    #shirt{
+      width:800px;
+    }
+}

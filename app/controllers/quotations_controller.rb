@@ -1,7 +1,8 @@
 class QuotationsController < ApplicationController
   before_filter :authenticate_apparel_consultant!
   def index
-    @quotations = Quotation.all
+    # @quotations = Quotation.all
+    @quotations = Quotation.order('id DESC').page(params[:page]).per_page(10)
   end
 
   def new

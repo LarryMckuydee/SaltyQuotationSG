@@ -3,20 +3,12 @@
 <head>
   <title>SaltyQuotation</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'print', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'print and (color)', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <script type="text/javascript">
-    //set class="active"
-    $(function(){
-        // alert(window.location);
-        $('.navbar ul li a').each(function(i){
-          // alert($(this).attr('href'))
-           if($(this).attr('href')==window.location){
-            $(this).parent().closest('li').prop('class','active')
-           }
-        });
 
-    });
 
     </script>
 </head>

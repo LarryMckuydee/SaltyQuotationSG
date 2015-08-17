@@ -5,6 +5,10 @@
 # alert 'hello'
 
 ready = ->
+  $('.selectable-row').on('click','td:not(.not-show)',->
+    window.location=$(this).parent().data('href')
+    )
+
 
   $('.ajax_link').bind('ajax:error',(evt,data,status,xhr) ->
       $('div#errors').append data

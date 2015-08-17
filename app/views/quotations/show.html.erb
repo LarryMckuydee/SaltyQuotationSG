@@ -1,6 +1,7 @@
-<p> Show for Quotation </p>
-<%= @quotation.customer.full_name %>
-<%= @quotation.inspect %>
+<!-- <p> Show for Quotation </p> -->
+
+<!-- <%= @quotation.customer.full_name %>
+<%= @quotation.inspect %> -->
 <br/>
 
 <div id="quotation">
@@ -107,8 +108,8 @@
               <th colspan="2">Approved by MD/ED/HOP</th>
               <% if current_apparel_consultant.approve_right==1 %>
 
-              <th><%= link_to "Approve", quotation_path(quotation:{id:@quotation.id,approval_id: current_apparel_consultant.id}),{method: :put,remote: true,class:"ajax_link","data-type"=>"json","data-id"=>@quotation.id} %></th>
-              <th><%= link_to "Delete", quotation_path(quotation:{id:@quotation.id,approval_id: :nil}),{method: :put,remote: true,class:"ajax_link","data-type"=>"json","data-id"=>@quotation.id} %> </th>
+              <th class="non-print"><%= link_to "Approve", quotation_path(quotation:{id:@quotation.id,approval_id: current_apparel_consultant.id}),{method: :put,remote: true,class:"ajax_link","data-type"=>"json","data-id"=>@quotation.id} %></th>
+              <th class="non-print"><%= link_to "Delete", quotation_path(quotation:{id:@quotation.id,approval_id: :nil}),{method: :put,remote: true,class:"ajax_link","data-type"=>"json","data-id"=>@quotation.id} %> </th>
               <% end %>
             </tr>
             <tr id="mid_header">
@@ -153,8 +154,8 @@
             <td><%= additional_info.price.to_s %> </td>
             <% if current_apparel_consultant.approve_right==1 %>
               <td><%= additional_info.apparel_consultant.blank? ? "No approve yet" :  additional_info.apparel_consultant.name %> </td>
-              <td><%= link_to "Approve", additional_info_path(id:additional_info.id, approval_id: current_apparel_consultant.id),{method: :put,remote: true,class:"ajax_link","data-id"=>@quotation.id} %></td>
-              <td><%= link_to "Delete", additional_info_path(id:additional_info.id, approval_id: :nil),{method: :put,remote: true,class:"ajax_link","data-id"=>@quotation.id} %> </td>
+              <td class="non-print"><%= link_to "Approve", additional_info_path(id:additional_info.id, approval_id: current_apparel_consultant.id),{method: :put,remote: true,class:"ajax_link","data-id"=>@quotation.id} %></td>
+              <td class="non-print"><%= link_to "Delete", additional_info_path(id:additional_info.id, approval_id: :nil),{method: :put,remote: true,class:"ajax_link","data-id"=>@quotation.id} %> </td>
             <% else %>
               <td><%= additional_info.apparel_consultant.blank? ? "No approve yet" :  additional_info.apparel_consultant.name %> </td>
             <% end %>

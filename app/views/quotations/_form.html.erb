@@ -291,7 +291,7 @@
       <%= additional_info_form.link_to_remove "Remove this task" %>
     <% end %>
 </fieldset>
-    <p><%= f.link_to_add "Add Additional Info", :additional_infos %></p>
+    <p><%= f.link_to_add :additional_infos do %><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Additional Info<% end %></p>
 
   <!-- <button > Add Additional Info </button> -->
   <button type="submit" class="btn btn-primary" >Submit </button>

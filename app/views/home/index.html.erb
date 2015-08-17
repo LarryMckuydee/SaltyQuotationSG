@@ -1,11 +1,22 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
+<!-- <h1>Home#index</h1>
+<p>Find me in app/views/home/index.html.erb</p> -->
+<div class="home">
 <% if apparel_consultant_signed_in? %>
+  <h1> Hi <%= current_apparel_consultant.name %></h1>
 
-  <%= link_to "Sign out", destroy_apparel_consultant_session_url, method: :delete %>
-  <%= link_to "Click me to add quotation", quotations_url %>
+  <p >  Welcome to Salty Quotation, to create quotation simply press <strong>New</strong> on the navigation bar.<br/>
+    To browse through quotation list simply click on the <strong>Quotation</strong> on the navigation bar.
+  </p>
+
+  <!-- <%= link_to "Sign out", destroy_apparel_consultant_session_url, method: :delete %> -->
+  <%= link_to "Click me to add quotation", quotations_url,class:"btn btn-default" %>
 <% else %>
-  <%= link_to "Sign in", new_apparel_consultant_session_url %>
-  <%= link_to "Sign up",new_apparel_consultant_registration_url%>
+  <h1>SaltyQuotation</h1>
+  <p>All the Apparel Consultant are require to login.<br/>
+    If you didn't have an account yet, kindly click on <strong>Sign Up</strong> button to register.<br/>
+  If you already have an account, kindly click on the <strong>Sign In</strong> button to login.<br/>
+Thank you.</p>
+  <%= link_to "Sign in", new_apparel_consultant_session_url,class:"btn btn-default" %><br/>
+  <%= link_to "Sign up",new_apparel_consultant_registration_url,class:"btn btn-default"%>
 <% end %>
+</div>

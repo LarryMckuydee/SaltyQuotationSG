@@ -1,55 +1,125 @@
 // Place all the styles related to the Quotation controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-//new
-#second-level-fieldset{
-  padding: 20px
-}
-
-#customer_info_tab{
-  border: 1px solid black;
-  padding: 20px;
-}
-
-// show
-#top_header{
-  background-color: black;
-  color:white;
-}
-
-#mid_header{
-  background-color: lightgray;
-}
-div[name="shirt"] {
-  height: 120px;
-  width:600px;
-  border: 1px solid black;
-}
-
-table th,table td{
-  text-align: center;
-}
-//
-
-
-#customer_info {
-  float:left;
-}
-
-#apparel_consultant_info {
-  float:right;
-}
-
-#shirt{
-  width:800px;
-}
-
-@media print {
+@media print{
     size: 21cm 29.7cm;
     margin: 30mm 45mm 30mm 45mm; /* change the margins as you want them to be. */
+    * {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+   }
+
+    #top_header{
+      display: table-row !important;
+      background-color: black !important;
+      color:white !important;
+      -webkit-print-color-adjust:exact;
+      visibility: visible;
+    }
+
+    #mid_header{
+      display: table-row !important;
+      background-color: lightgray !important;
+      -webkit-print-color-adjust:exact;
+    }
+    div[name="shirt"] {
+      height: 120px;
+      width:600px;
+      border: 1px solid black;
+    }
+
+    table th,table td{
+      text-align: center;
+    }
+    //
+
+
+    #customer_info {
+      float:left;
+    }
+
+    #apparel_consultant_info {
+      float:right;
+    }
+
+    #shirt{
+      width:800px;
+    }
+
+    .ajax_link,.non-print{
+      display: none;
+    }
 }
 
-#transparent_column{
+
+@media screen{
+  //index
+  .pagination{
+      color:black;
+      display: inline-block;
+      padding-left: 0;
+      margin: 20px 0;
+      border-radius: 4px;
+
+      .previous_page.disabled{
+        margin-left: 0;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+
+      em, dfn{
+        font-style: normal;
+      }
+  }
+
+  //new
+  .btn {
+    margin: 20px;
+  }
+
+  .remove_nested_fields{
+    margin-bottom: 20px;
+  }
+  #second-level-fieldset{
+    padding: 20px
+  }
+
+  #customer_info_tab{
+    border: 1px solid black;
+    padding: 20px;
+  }
+
+  // show
+  #top_header{
+    background-color: black;
+    color:white;
+  }
+
+  #mid_header{
+    background-color: lightgray;
+  }
+  div[name="shirt"] {
+    height: 120px;
+    width:600px;
+    border: 1px solid black;
+  }
+
+  table th,table td{
+    text-align: center;
+  }
+  //
+
+
+  #customer_info {
+    float:left;
+  }
+
+  #apparel_consultant_info {
+    float:right;
+  }
+
+  #shirt{
+    width:800px;
+  }
 
 }
