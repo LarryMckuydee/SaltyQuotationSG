@@ -9,7 +9,7 @@
 
   <h3><strong><u>Quotation Form</u></strong></h3>
   <div id="customer_info">
-  <p><label>Client's Name:</label><%= @quotation.customer.full_name %><br/>
+  <p><label>Client's Name:</label><%= @quotation.customer.full_name %> &nbsp; &nbsp; <%= @quotation.customer.existing_customer == 1 ? "<label style='color:red;'>Existing</label>".html_safe : "<label style='color:green;'>New</label>".html_safe %><br/>
   <label>Contact Number:</label><%= @quotation.customer.contact %><br/>
   <label>Address:</label><br/>
   <div>

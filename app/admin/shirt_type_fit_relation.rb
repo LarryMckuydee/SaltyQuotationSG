@@ -2,6 +2,23 @@ ActiveAdmin.register ShirtTypeFitRelation do
 
   permit_params :shirt_type_id,:fit_id,:price,:start_quantity,:end_quantity
 
+  index do
+      selectable_column
+      id_column
+      column "Shirt Type" do |s|
+        shirt_type = ShirtType.find(s.shirt_type_id).name
+      end
+      column "Fit" do |f|
+        fit= Fit.find(f.fit_id).name
+      end
+      column "Price",:price
+      column "Start Quantity",:start_quantity
+      column "End Quantity",:end_quantity
+      column "Created At",:created_at
+      column "Updated At",:updated_at
+      actions
+  end
+
   form do |f|
     f.inputs do
       f.input :shirt_type_id, as: :select,collection:ShirtType.all.collect{|shirt_type| [shirt_type.name,shirt_type.id]}

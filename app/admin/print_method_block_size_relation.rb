@@ -1,5 +1,22 @@
 ActiveAdmin.register PrintMethodBlockSizeRelation do
   permit_params :print_method_id,:block_size_id,:price,:block_charge_price,:start_quantity,:end_quantity
+
+  index do
+    selectable_column
+    column "Print Method" do |print_method|
+      shirt_type = PrintMethod.find(print_method.print_method_id).name
+    end
+    column "Block Size" do |block_size|
+      fit= BlockSize.find(block_size.block_size_id).name
+    end
+    column "Price",:price
+    column "Start Quantity",:start_quantity
+    column "End Quantity",:end_quantity
+    column "Created At",:created_at
+    column "Updated At",:updated_at
+    actions
+  end
+
   form do |f|
     f.inputs do
       f.input :print_method_id, as: :select,collection:PrintMethod.all.collect{|print_method| [print_method.name,print_method.id]}
