@@ -1,5 +1,5 @@
 ActiveAdmin.register PrintMethodBlockSizeRelation do
-  permit_params :print_method_id,:block_size_id,:price,:block_charge_price,:start_quantity,:end_quantity
+  permit_params :print_method_id,:block_size_id,:price,:block_charge_price,:start_quantity,:end_quantity,:is_primary
 
   index do
     selectable_column
@@ -26,6 +26,7 @@ ActiveAdmin.register PrintMethodBlockSizeRelation do
       f.input :block_charge_price, label: "Price Charge Per Block"
       f.input :start_quantity
       f.input :end_quantity
+      f.input :is_primary,:as =>:select,collection:[["No",0],["Yes",1]]
     end
     f.actions
   end
