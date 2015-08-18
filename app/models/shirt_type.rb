@@ -7,4 +7,5 @@ class ShirtType < ActiveRecord::Base
     # find(shirtid).shirt_type_fit_relations.where(:fit_id=>fitid)
     find(shirtid).shirt_type_fit_relations.where("fit_id = ? AND ?<= end_quantity AND ?>=start_quantity",fitid,quantity,quantity).first.price
   end
+  accepts_nested_attributes_for :shirt_type_fit_relations
 end

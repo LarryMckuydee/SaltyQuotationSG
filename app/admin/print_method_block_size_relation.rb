@@ -3,6 +3,7 @@ ActiveAdmin.register PrintMethodBlockSizeRelation do
 
   index do
     selectable_column
+    id_column
     column "Print Method" do |print_method|
       shirt_type = PrintMethod.find(print_method.print_method_id).name
     end
