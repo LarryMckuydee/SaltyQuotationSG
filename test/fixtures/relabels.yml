@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  relabel_charge_cents: 1
+  start_quantity: 1
+  end_quantity: 1
+
+two:
+  relabel_charge_cents: 1
+  start_quantity: 1
+  end_quantity: 1

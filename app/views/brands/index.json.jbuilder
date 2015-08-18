@@ -1,4 +1,5 @@
 json.array! @brands do |brand|
+  json.add_on brand.add_on_entitled
   json.brand brand.name
   json.shirt_types brand.shirt_types do |shirt_type|
     json.shirt_type_id shirt_type.id

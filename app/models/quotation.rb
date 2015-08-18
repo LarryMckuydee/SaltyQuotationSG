@@ -7,7 +7,8 @@ class Quotation < ActiveRecord::Base
   validates :back_block_no,presence: true,numericality:{less_than:11}
   validates :left_block_no,presence: true,numericality:{less_than:11}
   validates :right_block_no,presence: true,numericality:{less_than:11}
-  validates :special_print,presence: true,numericality:{less_than:3}
+  validates :special_print,presence: true,numericality:{less_than:3,only_integer:true}
+  validates :sew_tag_charge_cents,numericality:{only_integer:true}
   register_currency :myr
   monetize :budget_cents
   monetize :rush_fee_cents
@@ -18,6 +19,9 @@ class Quotation < ActiveRecord::Base
   monetize :max_rrp_cents
   monetize :actual_price_cents
   monetize :total_cost_cents
+  monetize :sew_tag_charge_cents
+  monetize :woven_tag_charge_cents
+  monetize :relabel_charge_cents
 
   belongs_to :customer
   # belongs_to :design

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814113810) do
+ActiveRecord::Schema.define(version: 20150817081032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,8 +104,9 @@ ActiveRecord::Schema.define(version: 20150814113810) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "add_on_entitled"
   end
 
   create_table "brands_fits", id: false, force: :cascade do |t|
@@ -200,8 +201,8 @@ ActiveRecord::Schema.define(version: 20150814113810) do
     t.integer  "ac_id"
     t.integer  "customer_id"
     t.integer  "approval_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "shirt_type_id"
     t.integer  "brand_id"
     t.integer  "fit_id"
@@ -227,6 +228,19 @@ ActiveRecord::Schema.define(version: 20150814113810) do
     t.integer  "max_rrp_cents"
     t.integer  "actual_price_cents"
     t.integer  "total_cost_cents"
+    t.integer  "sew_tag_charge_cents"
+    t.integer  "woven_tag_quantity"
+    t.integer  "woven_tag_charge_cents"
+    t.integer  "relabel_quantity"
+    t.integer  "relabel_charge_cents"
+  end
+
+  create_table "relabels", force: :cascade do |t|
+    t.integer  "relabel_charge_cents"
+    t.integer  "start_quantity"
+    t.integer  "end_quantity"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "shirt_type_fit_relations", force: :cascade do |t|
@@ -252,6 +266,14 @@ ActiveRecord::Schema.define(version: 20150814113810) do
     t.integer  "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "woven_tags", force: :cascade do |t|
+    t.integer  "tag_charge_cents"
+    t.integer  "start_quantity"
+    t.integer  "end_quantity"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
 end

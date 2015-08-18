@@ -1,11 +1,15 @@
 class AdditionalInfosController < ApplicationController
+  def new
+    @additional_info=AdditionalInfo.new
+  end
+
   def update
 
     @additional_info = AdditionalInfo.find(params[:id])
     if @additional_info.update(params.permit(:approval_id))
-      render "new"
+      redirect_to @additional_info.quotation
     else
-      render "new"
+      render json: 'Failed'
     end
   end
 end

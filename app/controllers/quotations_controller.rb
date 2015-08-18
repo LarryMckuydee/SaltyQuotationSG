@@ -27,6 +27,10 @@ class QuotationsController < ApplicationController
     @quotation = Quotation.find(params[:id])
   end
 
+  def calculator
+    @quotation= Quotation.new
+  end
+
   def show_price
     # @show_price = Quotation.new.showprice(params[:shirtid],params[:fitid],params[:methodid],params[:sizeid],params[:quantity],params[:noblock])
     shirt_price = 0

@@ -108,8 +108,8 @@
               <th colspan="2">Approved by MD/ED/HOP</th>
               <% if current_apparel_consultant.approve_right==1 %>
 
-              <th class="non-print"><%= link_to "Approve", quotation_path(quotation:{id:@quotation.id,approval_id: current_apparel_consultant.id}),{method: :put,remote: true,class:"ajax_link","data-type"=>"json","data-id"=>@quotation.id} %></th>
-              <th class="non-print"><%= link_to "Delete", quotation_path(quotation:{id:@quotation.id,approval_id: :nil}),{method: :put,remote: true,class:"ajax_link","data-type"=>"json","data-id"=>@quotation.id} %> </th>
+              <th class="non-print"><%= link_to "Approve", quotation_path(quotation:{id:@quotation.id,approval_id: current_apparel_consultant.id}),{method: :put,"data-type"=>"json","data-id"=>@quotation.id} %></th>
+              <th class="non-print"><%= link_to "Delete", quotation_path(quotation:{id:@quotation.id,approval_id: :nil}),{method: :put,"data-type"=>"json","data-id"=>@quotation.id} %> </th>
               <% end %>
             </tr>
             <tr id="mid_header">
@@ -137,6 +137,31 @@
         </table>
       </div>
 
+      <table class="table table-bordered extra_addon">
+        <tr id="top_header">
+          <th colspan="5">Extra Add On</th>
+        </tr>
+        <tr id="mid_header">
+          <th colspan="2">Relabelling</th>
+          <th colspan="2">Woven Tag</th>
+          <th>Sew Tag</th>
+        </tr>
+        <tr>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Price</th>
+        </tr>
+        <tr>
+          <td><%=@quotation.relabel_quantity%></td>
+          <td><%=@quotation.relabel_charge_cents%></td>
+          <td><%=@quotation.woven_tag_quantity%></td>
+          <td><%=@quotation.woven_tag_charge_cents%></td>
+          <td><%=@quotation.sew_tag_charge_cents%></td>
+        </tr>
+      </table>
+
       <% if !@quotation.additional_infos.blank? %>
       <table class="table table-bordered">
         <tr id="top_header">
@@ -154,8 +179,8 @@
             <td><%= additional_info.price.to_s %> </td>
             <% if current_apparel_consultant.approve_right==1 %>
               <td><%= additional_info.apparel_consultant.blank? ? "No approve yet" :  additional_info.apparel_consultant.name %> </td>
-              <td class="non-print"><%= link_to "Approve", additional_info_path(id:additional_info.id, approval_id: current_apparel_consultant.id),{method: :put,remote: true,class:"ajax_link","data-id"=>@quotation.id} %></td>
-              <td class="non-print"><%= link_to "Delete", additional_info_path(id:additional_info.id, approval_id: :nil),{method: :put,remote: true,class:"ajax_link","data-id"=>@quotation.id} %> </td>
+              <td class="non-print"><%= link_to "Approve", additional_info_path(id:additional_info.id, approval_id: current_apparel_consultant.id),{method: :put,"data-id"=>@quotation.id} %></td>
+              <td class="non-print"><%= link_to "Delete", additional_info_path(id:additional_info.id, approval_id: :nil),{method: :put,"data-id"=>@quotation.id} %> </td>
             <% else %>
               <td><%= additional_info.apparel_consultant.blank? ? "No approve yet" :  additional_info.apparel_consultant.name %> </td>
             <% end %>

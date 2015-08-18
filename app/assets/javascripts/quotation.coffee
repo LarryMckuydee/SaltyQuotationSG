@@ -5,19 +5,44 @@
 # alert 'hello'
 
 ready = ->
+  relabeljsonobj = 0
+  $.ajax
+    url: "/relabel.json"
+    dataType:"json"
+    success: (response) ->
+      relabeljsonobj = response
+
+  $('#quotation_relabel_quantity').keyup ->
+    $('#quotation_relabel_charge_cents').val(0)
+    relabeljsonobj.relabels.forEach (relabel) ->
+      # alert relabel.relabel_charge_cents
+      if $('#quotation_relabel_quantity').val()>=relabel.start_quantity&&$('#quotation_relabel_quantity').val()<=relabel.end_quantity
+        $('#quotation_relabel_charge_cents').val($('#quotation_relabel_quantity').val()*relabel.relabel_charge_cents)
+
+  $('#quotation_woven_tag_quantity').keyup ->
+    $('#quotation_woven_tag_charge_cents').val(0)
+    relabeljsonobj.woven_tags.forEach (woven_tag) ->
+      if $('#quotation_woven_tag_quantity').val()>=woven_tag.start_quantity&&$('#quotation_woven_tag_quantity').val()<=woven_tag.end_quantity
+        $('#quotation_woven_tag_charge_cents').val($('#quotation_woven_tag_quantity').val()*woven_tag.woven_tag_charge_cents)
+
+  $('#relabelling').hide()
+  $('#sew_tag').hide()
+
+
   $('.selectable-row').on('click','td:not(.not-show)',->
     window.location=$(this).parent().data('href')
     )
 
 
-  $('.ajax_link').bind('ajax:error',(evt,data,status,xhr) ->
-      $('div#errors').append data
-    ).bind('ajax:success',(evt,data,status,xhr) ->
-      # $(this).parent().closest
-      alert "Updated"
-      alert $(this).data('id')
-      location.reload()
-    )
+  # $('.ajax_link').bind('ajax:error',(evt,data,status,xhr) ->
+  #     $('div#errors').append data
+  #   ).bind('ajax:success',(evt,data,status,xhr) ->
+  #     # $(this).parent().closest
+  #     alert "Updated"
+  #     alert $(this).data('id')
+  #     console.log("")
+  #     location.reload()
+  #   )
   # c=0;
   # $("#AdditionalInfo").click ->
   #   textArea = $("<textarea id ='AddDesc"+c+"'rows='5' cols='20'></textarea>")
@@ -145,6 +170,12 @@ ready = ->
           # alert brand.brand
           # alert brand_name
           if brand_name.toString() == brand.brand.toString()
+            if brand.add_on == 1
+              $('#relabelling').show()
+              $('#sew_tag').show()
+            else
+              $('#relabelling').hide()
+              $('#sew_tag').hide()
             brand.shirt_types.forEach (shirt_type) ->
               $('#quotation_shirt_type_id').append $('<option>',{
                 value: shirt_type.shirt_type_id,
