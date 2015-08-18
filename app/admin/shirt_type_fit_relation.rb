@@ -1,16 +1,17 @@
-ActiveAdmin.register Brand do
+ActiveAdmin.register ShirtTypeFitRelation do
 
-  permit_params :name,:add_on_entitled,shirt_type_ids:[]
+  permit_params :shirt_type_id,:fit_id,:price,:start_quantity,:end_quantity
 
   form do |f|
-    inputs do
-      f.input :name
-      f.input :add_on_entitled,:as =>:select,collection:[["No",0],["Yes",1]]
-      f.input :shirt_types,as: :select,collection: ShirtType.all.collect{|shirt_type|[shirt_type.name,shirt_type.id]}
+    f.inputs do
+      f.input :shirt_type_id, as: :select,collection:ShirtType.all.collect{|shirt_type| [shirt_type.name,shirt_type.id]}
+      f.input :fit_id, as: :select,collection:Fit.all.collect{|fit| [fit.name,fit.id]}
+      f.input :price
+      f.input :start_quantity
+      f.input :end_quantity
     end
     f.actions
   end
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

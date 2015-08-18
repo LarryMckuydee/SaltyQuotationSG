@@ -1,16 +1,15 @@
-ActiveAdmin.register Brand do
+ActiveAdmin.register Relabel do
 
-  permit_params :name,:add_on_entitled,shirt_type_ids:[]
+  permit_params :relabel_charge,:start_quantity,:end_quantity
 
   form do |f|
     inputs do
-      f.input :name
-      f.input :add_on_entitled,:as =>:select,collection:[["No",0],["Yes",1]]
-      f.input :shirt_types,as: :select,collection: ShirtType.all.collect{|shirt_type|[shirt_type.name,shirt_type.id]}
+      f.input :relabel_charge, label:"Charge Per Relabelling"
+      f.input :start_quantity
+      f.input :end_quantity
     end
     f.actions
   end
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
