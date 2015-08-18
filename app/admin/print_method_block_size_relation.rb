@@ -13,6 +13,7 @@ ActiveAdmin.register PrintMethodBlockSizeRelation do
     column "Charge Per Block", :block_charge_price
     column "Start Quantity",:start_quantity
     column "End Quantity",:end_quantity
+    column "Primary Option",:is_primary
     column "Created At",:created_at
     column "Updated At",:updated_at
     actions
