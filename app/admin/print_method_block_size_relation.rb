@@ -10,6 +10,7 @@ ActiveAdmin.register PrintMethodBlockSizeRelation do
       fit= BlockSize.find(block_size.block_size_id).name
     end
     column "Price",:price
+    column "Charge Per Block", :block_charge_price
     column "Start Quantity",:start_quantity
     column "End Quantity",:end_quantity
     column "Created At",:created_at
