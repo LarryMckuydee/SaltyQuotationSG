@@ -9,7 +9,7 @@
 
   <h3><strong><u>Quotation Form</u></strong></h3>
   <div id="customer_info">
-  <p><label>Client's Name:</label><%= @quotation.customer.full_name %> &nbsp; &nbsp; <%= @quotation.customer.existing_customer == 1 ? "<label style='color:red;'>Existing</label>".html_safe : "<label style='color:green;'>New</label>".html_safe %><br/>
+  <p><label>Client's Name:</label><%= @quotation.customer.full_name %> &nbsp; &nbsp; <%= @quotation.customer.existing_customer == 1 ? "<label class='non-print' style='color:red;'>Existing</label>".html_safe : "<label style='color:green;'>New</label>".html_safe %><br/>
   <label>Contact Number:</label><%= @quotation.customer.contact %><br/>
   <label>Address:</label><br/>
   <div>
@@ -33,17 +33,15 @@
 
 
     <table id="shirt" class="table table-bordered">
-
-        <tr id="top_header">
-          <th colspan="4">Shirt</th>
-        </tr>
-        <tr id="mid_header">
-          <th>Quantity</th>
-          <th>Brand</th>
-          <th>Type</th>
-          <th>Fit</th>
-        </tr>
-
+      <tr class="top_header" id="top_header">
+        <th colspan="4">Shirt</th>
+      </tr>
+      <tr class="mid_header" id="mid_header">
+        <th>Quantity</th>
+        <th>Brand</th>
+        <th>Type</th>
+        <th>Fit</th>
+      </tr>
       <tr>
         <td><%=@quotation.quantity %></td>
         <td><%=@quotation.brand.name %></td>
@@ -58,16 +56,16 @@
 
     <table class="table table-bordered printing_detail" >
 
-      <tr id="top_header">
+      <tr class="top_header" id="top_header">
         <th colspan="10">Printing Details</th>
       </tr>
-      <tr id="mid_header">
+      <tr class="mid_header" id="mid_header">
         <th colspan="3">Front Print</th>
         <th colspan="3">Back Print</th>
         <th colspan="2">Left Print</th>
         <th colspan="2">Right Print</th>
       </tr>
-      <tr id="mid_header">
+      <tr class="mid_header" id="mid_header">
         <th>Print Method</th>
         <th>Block Size</th>
         <th>No. of Blocks</th>
@@ -101,7 +99,7 @@
         <table class="table table-bordered">
           <!-- <thead> -->
 
-            <tr id="top_header">
+            <tr class="top_header" id="top_header">
               <th colspan="2">Costing</th>
               <th colspan="2">Negotiation</th>
               <th colspan="2">Final Costing</th>
@@ -112,7 +110,7 @@
               <th class="non-print"><%= link_to "Delete", quotation_path(quotation:{id:@quotation.id,approval_id: :nil}),{method: :put,"data-type"=>"json","data-id"=>@quotation.id} %> </th>
               <% end %>
             </tr>
-            <tr id="mid_header">
+            <tr class="mid_header" id="mid_header">
               <th>Price</th>
               <th>Total Cost</th>
               <th>Min.RRP</th>
@@ -120,7 +118,7 @@
               <th>Price</th>
               <th>Total Cost</th>
               <td colspan="2" rowspan="2" style="background-color:white;"><%= @quotation.approver.blank? ? "No approve yet" :  @quotation.approver.name %> </td>
-              <td id="transparent_column" width="20%" colspan="2" rowspan="3" style="font-size:10px; background-color:white;">*Special requests (eg. Below standard MOQ 0f 200pcs, rush orders, sponsorships, revise prices below R.R.P., out of the product range etc.) have to be first approved and signed by M.D./E.D./S.D.before getting quotation from the H.O.P.</td>
+              <td id="transparent_column" width="20%" colspan="2" rowspan="3" style="font-size:10px; background-color:white;"><div class="limit-height">*Special requests (eg. Below standard MOQ 0f 200pcs, rush orders, sponsorships, revise prices below R.R.P., out of the product range etc.) have to be first approved and signed by M.D./E.D./S.D.before getting quotation from the H.O.P.</div></td>
             </tr>
           <!-- </thead> -->
           <!-- <tbody> -->
@@ -138,10 +136,10 @@
       </div>
 
       <table class="table table-bordered extra_addon">
-        <tr id="top_header">
+        <tr class="top_header" id="top_header">
           <th colspan="5">Extra Add On</th>
         </tr>
-        <tr id="mid_header">
+        <tr class="mid_header" id="mid_header">
           <th colspan="2">Relabelling</th>
           <th colspan="2">Woven Tag</th>
           <th>Sew Tag</th>
@@ -164,7 +162,7 @@
 
       <% if !@quotation.additional_infos.blank? %>
       <table class="table table-bordered">
-        <tr id="top_header">
+        <tr class="top_header" id="top_header">
           <th>Description</th>
           <th>Price</th>
           <th>Approved by MD/ED/HOP</th>
