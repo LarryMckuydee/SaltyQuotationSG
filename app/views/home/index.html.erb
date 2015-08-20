@@ -3,7 +3,11 @@
 <div class="home">
 <% if apparel_consultant_signed_in? %>
   <h1> Hi <%= current_apparel_consultant.name %></h1>
-
+  <% if Time.now>Time.new.noon()%>
+    <h2>Good Afternoon</h2>
+  <% else%>
+    <h2>Good Morning</h2>
+  <% end %>
   <p >  Welcome to Salty Quotation, to create quotation simply press <strong>New</strong> on the navigation bar.<br/>
     To browse through quotation list simply click on the <strong>Quotation</strong> on the navigation bar.<br/>
     To use the calculator, simply click on the <strong>Calculator</strong> on the navigation bar.

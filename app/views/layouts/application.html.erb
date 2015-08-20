@@ -7,13 +7,11 @@
   <%= stylesheet_link_tag    'application', media: 'print and (color)', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <script type="text/javascript">
 
-
-    </script>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
+    <!-- <a href="#" id="menu"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a> -->
     <div class="container">
       <div class="navbar-header"><a class="navbar-brand">SaltyQuotation</a></div>
       <div id="navbar">
@@ -29,8 +27,6 @@
          <% else %>
            <li><%= link_to "Sign in", new_apparel_consultant_session_url %></li>
          <% end %>
-
-
         </ul>
       </div>
     </div>

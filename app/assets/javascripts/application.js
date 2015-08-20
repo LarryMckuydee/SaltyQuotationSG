@@ -20,6 +20,15 @@
 
 //set class="active"
 function ready(){
+  $('#menu').click(function(){
+    $('#navbar').toggle();
+      if($('a').css('color','blue'))
+        $('a').css('color','black');
+      else
+        $('a').css('color','black');
+  });
+
+
   $(function(){
       // alert(window.location);
       $('.navbar ul li a').each(function(i){
