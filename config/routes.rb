@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # get 'customers/index'
   #
   # get 'show_price/:shirt_type_id/:fit_id/:front_print_method_id/:front_block_size_id/:front_block_no/:back_print_method_id/:back_block_size_id/:back_block_no/:left_print_method_id/:left_block_no/:right_print_method_id/:right_block_no/:quantity/:special_print' => 'quotations#show_price'
+  get 'what_is_the_time_now'=>'static#server_time'
   get 'show_price'=>'quotations#show_price'
   get 'show_total_cost/:id' => 'quotations#show_total_cost'
   get 'calculator'=>'quotations#calculator'
