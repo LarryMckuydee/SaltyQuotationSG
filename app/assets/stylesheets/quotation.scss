@@ -129,5 +129,10 @@
   #shirt{
     width:800px;
   }
-
+  @media(max-width:768px){
+    #quotation{
+      width:1140px;
+    }
+    
+  }
 }

@@ -122,6 +122,7 @@ ready = ->
         $('#quotation_max_rrp_cents').val(response.max_rrp)
 
 
+
   # $('#quotation_fit_id').change ->
   #   $.ajax
   #     url: "/shirt_types/"+$('#quotation_shirt_type_id').val()

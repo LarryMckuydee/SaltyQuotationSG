@@ -30,7 +30,13 @@ Rails.application.routes.draw do
   #get 'home/index'
   root 'home#index'
 
-  devise_for :apparel_consultants
+  # devise_for :apparel_consultants
+  devise_for :apparel_consultants, :skip => [:registrations]
+  as :apparel_consultant do
+    get 'apparel_consultants/edit' => 'devise/registrations#edit', :as => 'edit_apparel_consultant_registration'
+    put 'apparel_consultants' => 'devise/registrations#update', :as => 'apparel_consultant_registration'
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.

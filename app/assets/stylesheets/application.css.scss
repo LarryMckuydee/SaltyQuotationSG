@@ -43,22 +43,48 @@
  .inner{
    padding: 60px;
  }
+ #menu{
+   display: none;
+ }
 
-// @media(max-width:768px){
-//     #navbar{
-//       display: none;
-//     }
-//
-//     .navbar-brand{
-//       float:left;
-//     }
-//
-//     nav .glyphicon-menu-hamburger{
-//       float: right;
-//       font-size: 2em;
-//       padding: 10px 20px;
-//     }
-//
-//
-//
-// }
+
+@media(max-width:768px){
+    #menu{
+      display: block;
+    }
+    .inner{
+      padding:60px 20px 0 20px;
+    }
+    nav{
+      width:100%;
+    }
+    .navbar-brand{
+      float:left;
+    }
+
+    li{
+      a{
+        font-size: 1.1em;
+      }
+    }
+    h1{
+      font-size: 300%;
+    }
+    h2{
+      font-size: 200%;
+    }
+
+    p{
+      font-size: 1.1em;
+    }
+
+    fieldset{
+      width:100%;
+    }
+    nav .glyphicon-menu-hamburger{
+      float: right;
+      font-size: 2em;
+      padding: 10px 20px;
+    }
+
+}
