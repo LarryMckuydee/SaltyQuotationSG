@@ -3,8 +3,8 @@
 <div class="home">
 <% if apparel_consultant_signed_in? %>
   <h1> Hi <%= current_apparel_consultant.name %></h1>
-  <% if Time.now.getlocal('+08:00')>Time.new.noon()%>
-    <% if Time.now.getlocal('+08:00')>(Time.new.noon()+120.minutes) %>
+  <% if Time.now.getlocal('+08:00')>Time.new.noon().getlocal('+08:00')%>
+    <% if Time.now.getlocal('+08:00')>(Time.new.noon().getlocal('+08:00')+120.minutes) %>
     <h2>Good Evening</h2>
     <% else %>
     <h2>Good Afternoon</h2>
