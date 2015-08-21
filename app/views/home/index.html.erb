@@ -3,8 +3,8 @@
 <div class="home">
 <% if apparel_consultant_signed_in? %>
   <h1> Hi <%= current_apparel_consultant.name %></h1>
-  <% if Time.now>Time.new.noon()%>
-    <% if Time.now>(Time.new.noon()+120.minutes) %>
+  <% if Time.now.getlocal('+8:00')>Time.new.noon()%>
+    <% if Time.now.getlocal('+8:00')>(Time.new.noon()+120.minutes) %>
     <h2>Good Evening</h2>
     <% else %>
     <h2>Good Afternoon</h2>
@@ -26,6 +26,6 @@
   If you already have an account, kindly click on the <strong>Sign In</strong> button to login.<br/>
 Thank you.</p>
   <%= link_to "Sign in", new_apparel_consultant_session_url,class:"btn btn-default" %><br/>
-  
+
 <% end %>
 </div>
