@@ -49,47 +49,6 @@
 
 
 @media(max-width:768px){
-    #menu{
-      display: block;
-    }
-    .inner{
-      padding:60px 20px 0 20px;
-    }
-    nav{
-      width:100%;
-    }
-    .navbar-brand{
-      float:left;
-    }
-
-    li{
-      a{
-        font-size: 1.1em;
-      }
-    }
-    h1{
-      font-size: 3.1em;
-    }
-    h2{
-      font-size: 2.1em;
-    }
-
-    p{
-      font-size: 1.1em;
-    }
-
-    fieldset{
-      width:100%;
-    }
-    nav .glyphicon-menu-hamburger{
-      float: right;
-      font-size: 2em;
-      padding: 10px 20px;
-    }
-
-}
-
-@media(max-width:480){
   #menu{
     display: block;
   }
@@ -109,7 +68,7 @@
     }
   }
   h1{
-    font-size: 2.7em;
+    font-size: 2.7em !important;
   }
   h2{
     font-size: 2em;
