@@ -9,7 +9,7 @@ class Quotation < ActiveRecord::Base
   validates :right_block_no,presence: true,numericality:{less_than:11}
   validates :special_print,presence: true,numericality:{less_than:3,only_integer:true}
   validates :sew_tag_charge_cents,numericality:{only_integer:true}
-  register_currency :myr
+  register_currency :sgd
   monetize :budget_cents
   monetize :rush_fee_cents
   monetize :delivery_fee_cents

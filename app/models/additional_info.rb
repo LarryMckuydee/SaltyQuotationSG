@@ -1,5 +1,5 @@
 class AdditionalInfo < ActiveRecord::Base
-  register_currency :myr
+  register_currency :sgd
   monetize :price_cents
   belongs_to :quotation
   belongs_to :apparel_consultant, foreign_key: "approval_id"

@@ -67,7 +67,7 @@ class QuotationsController < ApplicationController
       right_price = tempprice + tempblockcharge*params[:right_block_no].to_i
     end
 
-    special_print = Money.new(params[:special_print].to_i*100,"MYR")
+    special_print = Money.new(params[:special_print].to_i*100,"SGD")
     @show_price = shirt_price+front_price+back_price+left_price+right_price+special_print
     @show_cost = (shirt_price+front_price+back_price+left_price+right_price+special_print)*params[:quantity].to_i
     @show_min_rrp = @show_price-(@show_price/100)

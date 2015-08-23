@@ -1,4 +1,4 @@
 class Relabel < ActiveRecord::Base
-  register_currency :myr
+  register_currency :sgd
   monetize :relabel_charge_cents
 end

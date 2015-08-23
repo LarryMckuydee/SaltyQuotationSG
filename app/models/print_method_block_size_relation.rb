@@ -1,5 +1,5 @@
 class PrintMethodBlockSizeRelation < ActiveRecord::Base
-  register_currency :myr
+  register_currency :sgd
   monetize :price_cents
   monetize :block_charge_price_cents
   belongs_to :print_method
